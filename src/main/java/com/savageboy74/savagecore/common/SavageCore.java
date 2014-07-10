@@ -36,6 +36,9 @@ public class SavageCore
         ConfigHandler.init(event.getSuggestedConfigurationFile());
         FMLCommonHandler.instance().bus().register(new ConfigHandler());
 
+        FMLCommonHandler.instance().bus().register(this);
+        MinecraftForge.EVENT_BUS.register(this);
+
         LogHelper.info("Pre-Initialization Complete.");
 
         if (ConfigHandler.checkForUpdates == true)

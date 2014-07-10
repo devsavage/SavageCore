@@ -2,7 +2,7 @@ package com.savageboy74.savagecore.common.util;
 
 public class Reference
 {
-    public static final String MOD_ID = "savagecore";
+    public static final String MOD_ID = "SavageCore";
     public static final String MOD_NAME = "Savage Core";
     public static final String VERSION = "1.7.10-0.1";
 
