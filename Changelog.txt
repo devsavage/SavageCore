@@ -1,0 +1,3 @@
+Changelog:
+	Build 0.1:
+		savageboy74: Initial commit, Added ConfigHandler, Added core components
