@@ -16,7 +16,7 @@ public class ConfigHandler
     {
         if (configuration == null)
         {
-            configuration = new Configuration(configFile);
+            configuration = new Configuration(new File("config/savageboy74/SavageCore.cfg"));
             loadConfiguration();
         }
     }

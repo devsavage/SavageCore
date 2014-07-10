@@ -9,7 +9,7 @@ public class Reference
     public static final String CLIENT_PROXY = "com.savageboy74.savagecore.client.proxy.ClientProxy";
     public static final String SERVER_PROXY = "com.savageboy74.savagecore.common.proxy.CommonProxy";
 
-    public static final String GUI_FACTORY_CLASS = "com.savageboy74.savagecore.common.gui.GuiFactory";
+    public static final String GUI_FACTORY_CLASS = "com.savageboy74.savagecore.client.gui.GuiFactory";
 
     public static final int UPDATE_NUMBER = 1;
     public static String UPDATES = "";

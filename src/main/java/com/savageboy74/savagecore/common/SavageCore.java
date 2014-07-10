@@ -20,7 +20,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.io.IOException;
 
-@Mod(modid = Reference.MOD_ID, version = Reference.VERSION)
+@Mod(modid = Reference.MOD_ID, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class SavageCore
 {
 
@@ -34,9 +34,6 @@ public class SavageCore
     public void preInit(FMLPreInitializationEvent event)
     {
         ConfigHandler.init(event.getSuggestedConfigurationFile());
-
-        FMLCommonHandler.instance().bus().register(this);
-        MinecraftForge.EVENT_BUS.register(this);
         FMLCommonHandler.instance().bus().register(new ConfigHandler());
 
         LogHelper.info("Pre-Initialization Complete.");
