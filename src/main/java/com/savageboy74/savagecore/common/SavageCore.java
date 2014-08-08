@@ -1,6 +1,7 @@
 package com.savageboy74.savagecore.common;
 
 import com.savageboy74.savagecore.common.config.ConfigHandler;
+import com.savageboy74.savagecore.common.core.command.CommandHandler;
 import com.savageboy74.savagecore.common.proxy.CommonProxy;
 import com.savageboy74.savagecore.common.util.LogHelper;
 import com.savageboy74.savagecore.common.util.Reference;
@@ -12,6 +13,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.util.ChatComponentText;
@@ -54,6 +56,12 @@ public class SavageCore
                 e.printStackTrace();
             }
         }
+    }
+
+    @EventHandler
+    public void serverStarting(FMLServerStartingEvent event)
+    {
+        CommandHandler.initCommands(event);
     }
     
     @EventHandler
