@@ -106,7 +106,7 @@ public class SavageCore
 
             String name = Reference.MOD_NAME;
             String outdatedText = aqua + "[" + name + "] " + reset + "This version of " + green + name + reset + " is" + darkRed + " outdated!";
-            String versionText =  "Current Version: " + darkRed + Reference.VERSION + reset + "Newest Version: " + darkGreen +  Reference.NEWVERSION;
+            String versionText =  "Current Version: " + darkRed + Reference.VERSION + reset + " Newest Version: " + darkGreen +  Reference.NEWVERSION;
 
             event.player.addChatComponentMessage(new ChatComponentText(outdatedText));
             event.player.addChatComponentMessage(new ChatComponentText(versionText));
