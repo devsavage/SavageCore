@@ -14,3 +14,12 @@ Links
 [Website](https://savageboy74.tv/)  
 [Twitch](http://www.twitch.tv/savageboy74/)  
 [Twitter](https://twitter.com/savageboy74)  
+
+<br>
+
+
+This work is licensed under a <a rel="license" href="http://opensource.org/licenses/MIT" target="_blank">MIT License</a>  
+<br>
+<br>
+<a rel="license" href="http://opensource.org/licenses/MIT" target="_blank"> <img src="http://epe.si/sites/default/files/pictures/osi.png"/></a>  
+<br>  
