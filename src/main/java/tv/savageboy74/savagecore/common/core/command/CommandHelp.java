@@ -1,6 +1,6 @@
-package com.savageboy74.savagecore.common.core.command;
+package tv.savageboy74.savagecore.common.core.command;
 
-import com.savageboy74.savagecore.common.core.helper.StringHelper;
+import tv.savageboy74.savagecore.common.core.helper.StringHelper;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;

@@ -1,6 +1,6 @@
-package com.savageboy74.savagecore.common.config;
+package tv.savageboy74.savagecore.common.config;
 
-import com.savageboy74.savagecore.common.util.Reference;
+import tv.savageboy74.savagecore.common.util.Reference;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.common.config.Configuration;

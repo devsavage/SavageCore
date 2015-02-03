@@ -1,4 +1,4 @@
-package com.savageboy74.savagecore.common.core.helper;
+package tv.savageboy74.savagecore.common.core.helper;
 
 /**
  * Defines font constants such as colors and formatting.

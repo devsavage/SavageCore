@@ -1,6 +1,6 @@
-package com.savageboy74.savagecore.common.core.command;
+package tv.savageboy74.savagecore.common.core.command;
 
-import com.savageboy74.savagecore.common.core.helper.StringHelper;
+import tv.savageboy74.savagecore.common.core.helper.StringHelper;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;

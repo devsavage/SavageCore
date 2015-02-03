@@ -1,11 +1,11 @@
-package com.savageboy74.savagecore.common;
+package tv.savageboy74.savagecore.common;
 
-import com.savageboy74.savagecore.common.config.ConfigHandler;
-import com.savageboy74.savagecore.common.core.command.CommandHandler;
-import com.savageboy74.savagecore.common.proxy.CommonProxy;
-import com.savageboy74.savagecore.common.util.LogHelper;
-import com.savageboy74.savagecore.common.util.Reference;
-import com.savageboy74.savagecore.common.util.UpdateChecker;
+import tv.savageboy74.savagecore.common.config.ConfigHandler;
+import tv.savageboy74.savagecore.common.core.command.CommandHandler;
+import tv.savageboy74.savagecore.common.proxy.CommonProxy;
+import tv.savageboy74.savagecore.common.util.LogHelper;
+import tv.savageboy74.savagecore.common.util.Reference;
+import tv.savageboy74.savagecore.common.util.UpdateChecker;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -43,7 +43,7 @@ public class SavageCore
 
         LogHelper.info("Pre-Initialization Complete.");
 
-        if (ConfigHandler.checkForUpdates == true)
+        if (ConfigHandler.checkForUpdates)
         {
             try
             {
@@ -71,10 +71,22 @@ public class SavageCore
     }
 
     @SubscribeEvent
-    public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event) {
-        if (Reference.OUTDATED) {
-            event.player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.AQUA + "SavageCore " +  EnumChatFormatting.WHITE + "is " + EnumChatFormatting.DARK_RED + "outdated!"));
-            event.player.addChatComponentMessage(new ChatComponentText("Current Version: " + EnumChatFormatting.DARK_RED + Reference.CURRENTVERSION + EnumChatFormatting.WHITE +  " Newest Version: " + EnumChatFormatting.DARK_GREEN + Reference.NEWVERSION));
+    public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event)
+    {
+        if (Reference.OUTDATED)
+        {
+            EnumChatFormatting darkRed = EnumChatFormatting.DARK_RED;
+            EnumChatFormatting aqua = EnumChatFormatting.AQUA;
+            EnumChatFormatting darkGreen = EnumChatFormatting.DARK_GREEN;
+            EnumChatFormatting reset = EnumChatFormatting.RESET;
+            EnumChatFormatting green = EnumChatFormatting.GREEN;
+
+            String name = Reference.MOD_NAME;
+            String outdatedText = aqua + "[" + name + "] " + reset + "This version of " + green + name + reset + " is" + darkRed + " outdated!";
+            String versionText =  "Current Version: " + darkRed + Reference.VERSION + reset + "Newest Version: " + darkGreen +  Reference.NEWVERSION;
+
+            event.player.addChatComponentMessage(new ChatComponentText(outdatedText));
+            event.player.addChatComponentMessage(new ChatComponentText(versionText));
         }
     }
 

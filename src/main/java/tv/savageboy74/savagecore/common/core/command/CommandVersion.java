@@ -1,8 +1,8 @@
-package com.savageboy74.savagecore.common.core.command;
+package tv.savageboy74.savagecore.common.core.command;
 
-import com.savageboy74.savagecore.common.core.helper.Font;
-import com.savageboy74.savagecore.common.core.helper.StringHelper;
-import com.savageboy74.savagecore.common.util.Reference;
+import tv.savageboy74.savagecore.common.core.helper.Font;
+import tv.savageboy74.savagecore.common.core.helper.StringHelper;
+import tv.savageboy74.savagecore.common.util.Reference;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;

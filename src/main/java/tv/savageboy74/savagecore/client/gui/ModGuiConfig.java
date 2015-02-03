@@ -1,7 +1,7 @@
-package com.savageboy74.savagecore.client.gui;
+package tv.savageboy74.savagecore.client.gui;
 
-import com.savageboy74.savagecore.common.config.ConfigHandler;
-import com.savageboy74.savagecore.common.util.Reference;
+import tv.savageboy74.savagecore.common.config.ConfigHandler;
+import tv.savageboy74.savagecore.common.util.Reference;
 import cpw.mods.fml.client.config.GuiConfig;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;

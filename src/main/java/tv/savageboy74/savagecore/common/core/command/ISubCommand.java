@@ -1,4 +1,4 @@
-package com.savageboy74.savagecore.common.core.command;
+package tv.savageboy74.savagecore.common.core.command;
 
 import net.minecraft.command.ICommandSender;
 

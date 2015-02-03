@@ -1,4 +1,4 @@
-package com.savageboy74.savagecore.common.core.helper;
+package tv.savageboy74.savagecore.common.core.helper;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.EnumRarity;

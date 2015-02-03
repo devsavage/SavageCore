@@ -1,4 +1,4 @@
-package com.savageboy74.savagecore.common.util;
+package tv.savageboy74.savagecore.common.util;
 
 import cpw.mods.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;

@@ -1,4 +1,4 @@
-package com.savageboy74.savagecore.common.proxy;
+package tv.savageboy74.savagecore.common.proxy;
 
 public class CommonProxy
 {
