@@ -7,6 +7,7 @@ MOD INFO
 ========
 Minecraft Version: 1.7.10  
 Forge Version: 10.13.2.1230+  
+Get the most up to date version: [![Build Status](https://drone.io/github.com/savageboy74/SavageCore/status.png)](https://drone.io/github.com/savageboy74/SavageCore/latest)  
 
 Links
 ======
