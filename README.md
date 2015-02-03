@@ -6,7 +6,7 @@ A core mod for some of my mods.
 MOD INFO
 ========
 Minecraft Version: 1.7.10  
-Forge Version: 10.13.0.1160+  
+Forge Version: 10.13.2.1230+  
 
 Links
 ======
