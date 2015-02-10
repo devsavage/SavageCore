@@ -23,8 +23,6 @@ package tv.savageboy74.savagecore.common.util;
  * THE SOFTWARE.
  */
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
@@ -36,6 +34,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class Utils
@@ -51,7 +51,7 @@ public class Utils
         float d1 = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5F;
         float d2 = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5F;
         EntityItem entityitem = new EntityItem(worldObj, x + d0, y + d1, z + d2, stack);
-        entityitem.delayBeforeCanPickup = 10;
+        entityitem.setPickupDelay(10);
         if (stack.hasTagCompound())
         {
             entityitem.getEntityItem().setTagCompound((NBTTagCompound)stack.getTagCompound().copy());
@@ -67,21 +67,21 @@ public class Utils
             double f = (double)world.rand.nextFloat() * d + (1.0D - d) * 0.5D;
             double g = (double)world.rand.nextFloat() * d + (1.0D - d) * 0.5D;
             EntityItem entityItem = new EntityItem(world, (double)i + e, (double)j + f, (double)k + g, stack.copy());
-            entityItem.delayBeforeCanPickup = 10;
+            entityItem.setPickupDelay(10);
             world.spawnEntityInWorld(entityItem);
         }
     }
+//
+//    public static boolean isEnabled(ItemStack itemStack)
+//    {
+//        return NBTHelper.getBoolean(itemStack, "enabled");
+//    }
 
-    public static boolean isEnabled(ItemStack itemStack)
-    {
-        return NBTHelper.getBoolean(itemStack, "enabled");
-    }
-
-    public static String getIdent(Item item) {
+    public static Object getIdent(Item item) {
         return item == null ? null : Item.itemRegistry.getNameForObject(item);
     }
 
-    public static String getIdent(Block block) {
+    public static Object getIdent(Block block) {
         return block == null ? null : Block.blockRegistry.getNameForObject(block);
     }
 
@@ -109,45 +109,45 @@ public class Utils
     {
         GameRegistry.addSmelting(dust, ingot, exp);
     }
-
-    public static boolean consumeFirstInventoryItem(IInventory inventory, ItemStack stack) {
-        int slotWithStack = getFirstSlotWithStack(inventory, stack);
-        if (slotWithStack > -1) {
-            ItemStack stackInSlot = inventory.getStackInSlot(slotWithStack);
-            stackInSlot.stackSize--;
-            if (stackInSlot.stackSize == 0) {
-                inventory.setInventorySlotContents(slotWithStack, null);
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public static int getFirstSlotWithStack(IInventory inventory, ItemStack stack) {
-        inventory = getInventory(inventory);
-        for (int i = 0; i < inventory.getSizeInventory(); i++) {
-            ItemStack stackInSlot = inventory.getStackInSlot(i);
-            if (stackInSlot != null && stackInSlot.isItemEqual(stack)) { return i; }
-        }
-        return -1;
-    }
-
-    public static IInventory getInventory(IInventory inventory) {
-        if (inventory instanceof TileEntityChest) return doubleChestFix((TileEntity)inventory);
-        return inventory;
-    }
-
-    private static IInventory doubleChestFix(TileEntity te) {
-        final World world = te.getWorldObj();
-        final int x = te.xCoord;
-        final int y = te.yCoord;
-        final int z = te.zCoord;
-        if (world.getBlock(x - 1, y, z) == net.minecraft.init.Blocks.chest) return new InventoryLargeChest("Large chest", (IInventory)world.getTileEntity(x - 1, y, z), (IInventory)te);
-        if (world.getBlock(x + 1, y, z) == net.minecraft.init.Blocks.chest) return new InventoryLargeChest("Large chest", (IInventory)te, (IInventory)world.getTileEntity(x + 1, y, z));
-        if (world.getBlock(x, y, z - 1) == net.minecraft.init.Blocks.chest) return new InventoryLargeChest("Large chest", (IInventory)world.getTileEntity(x, y, z - 1), (IInventory)te);
-        if (world.getBlock(x, y, z + 1) == net.minecraft.init.Blocks.chest) return new InventoryLargeChest("Large chest", (IInventory)te, (IInventory)world.getTileEntity(x, y, z + 1));
-        return (te instanceof IInventory)? (IInventory)te : null;
-    }
+//
+//    public static boolean consumeFirstInventoryItem(IInventory inventory, ItemStack stack) {
+//        int slotWithStack = getFirstSlotWithStack(inventory, stack);
+//        if (slotWithStack > -1) {
+//            ItemStack stackInSlot = inventory.getStackInSlot(slotWithStack);
+//            stackInSlot.stackSize--;
+//            if (stackInSlot.stackSize == 0) {
+//                inventory.setInventorySlotContents(slotWithStack, null);
+//            }
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    public static int getFirstSlotWithStack(IInventory inventory, ItemStack stack) {
+//        inventory = getInventory(inventory);
+//        for (int i = 0; i < inventory.getSizeInventory(); i++) {
+//            ItemStack stackInSlot = inventory.getStackInSlot(i);
+//            if (stackInSlot != null && stackInSlot.isItemEqual(stack)) { return i; }
+//        }
+//        return -1;
+//    }
+//
+//    public static IInventory getInventory(IInventory inventory) {
+//        if (inventory instanceof TileEntityChest) return doubleChestFix((TileEntity)inventory);
+//        return inventory;
+//    }
+//
+//    private static IInventory doubleChestFix(TileEntity te) {
+//        final World world = te.getWorldObj();
+//        final int x = te.xCoord;
+//        final int y = te.yCoord;
+//        final int z = te.zCoord;
+//        if (world.getBlock(x - 1, y, z) == net.minecraft.init.Blocks.chest) return new InventoryLargeChest("Large chest", (IInventory)world.getTileEntity(x - 1, y, z), (IInventory)te);
+//        if (world.getBlock(x + 1, y, z) == net.minecraft.init.Blocks.chest) return new InventoryLargeChest("Large chest", (IInventory)te, (IInventory)world.getTileEntity(x + 1, y, z));
+//        if (world.getBlock(x, y, z - 1) == net.minecraft.init.Blocks.chest) return new InventoryLargeChest("Large chest", (IInventory)world.getTileEntity(x, y, z - 1), (IInventory)te);
+//        if (world.getBlock(x, y, z + 1) == net.minecraft.init.Blocks.chest) return new InventoryLargeChest("Large chest", (IInventory)te, (IInventory)world.getTileEntity(x, y, z + 1));
+//        return (te instanceof IInventory)? (IInventory)te : null;
+//    }
 
     public static ItemStack returnItem(ItemStack stack) {
         return (stack == null || stack.stackSize <= 0)? null : stack.copy();

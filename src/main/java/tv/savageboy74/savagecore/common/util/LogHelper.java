@@ -1,6 +1,6 @@
 package tv.savageboy74.savagecore.common.util;
 
-import cpw.mods.fml.common.FMLLog;
+import net.minecraftforge.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;
 
 public class LogHelper

@@ -28,7 +28,7 @@ public class UpdateChecker {
     //Update Number, Each Update Requires A New Number. PasteBin: Reference: UPDATE_NUMBER
     public static int getNewest() throws IOException
     {
-        URL url = new URL("https://raw.githubusercontent.com/woody104/SavageCore/master/UpdateNumber.txt");
+        URL url = new URL("https://raw.githubusercontent.com/savageboy74/SavageCore/1.8/UpdateNumber.txt");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -57,7 +57,7 @@ public class UpdateChecker {
     //This is the newest version. PasteBin: Reference: NEW_VERSION Keep Updated With The Current Version
     private static String updatedVersion(int version) throws IOException
     {
-        URL url = new URL("https://raw.githubusercontent.com/woody104/SavageCore/master/NewestVersion.txt");
+        URL url = new URL("https://raw.githubusercontent.com/savageboy74/SavageCore/1.8/NewestVersion.txt");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
