@@ -15,7 +15,7 @@ public class Reference
 
     public static final String GUI_FACTORY_CLASS = "tv.savageboy74.savagecore.client.gui.GuiFactory";
 
-    public static final int UPDATE_NUMBER = 2;
+    public static final int UPDATE_NUMBER = 3;
     public static String UPDATES = "";
     public static boolean OUTDATED = false;
 

@@ -27,6 +27,7 @@ import tv.savageboy74.savagecore.common.util.Reference;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.common.config.Configuration;
+import tv.savageboy74.savagecore.common.util.Strings;
 
 import java.io.File;
 
@@ -39,7 +40,7 @@ public class ConfigHandler
     {
         if (configuration == null)
         {
-            configuration = new Configuration(new File("config/savageboy74/SavageCore.cfg"));
+            configuration = new Configuration(new File("config/SavageCore.cfg"));
             loadConfiguration();
         }
     }
@@ -55,7 +56,7 @@ public class ConfigHandler
 
     private static void loadConfiguration()
     {
-        checkForUpdates = configuration.getBoolean("Check For Updates", Configuration.CATEGORY_GENERAL, true, "Allow SavageCore to check for updates");
+        checkForUpdates = configuration.getBoolean(Strings.Config.CONFIG_UPDATES_NAME, Configuration.CATEGORY_GENERAL, true, Strings.Config.CONFIG_UPDATES_DESC);
 
         if (configuration.hasChanged())
         {

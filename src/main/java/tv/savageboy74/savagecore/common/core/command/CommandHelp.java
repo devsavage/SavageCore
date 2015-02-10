@@ -48,18 +48,24 @@ public class CommandHelp implements ISubCommand {
         if (arguments.length == 0) {
             return;
         }
+
         if (arguments.length == 1) {
 
             StringBuilder output = new StringBuilder(StringHelper.localize("info.savagecore.command.help.0") + " ");
             List<String> commandList = new ArrayList<String>(CommandHandler.getCommandList());
 
-            for (int i = 0; i < commandList.size() - 1; i++) {
+            for (int i = 0; i < commandList.size() - 1; i++)
+            {
                 output.append(StringHelper.YELLOW + "/savagecore " + commandList.get(i) + StringHelper.WHITE + ", ");
             }
+
             output.delete(output.length() - 2, output.length());
-            output.append(" and /savagecore " + commandList.get(commandList.size() - 1) + ".");
+            output.append( " and " + StringHelper.YELLOW + "/savagecore " + commandList.get(commandList.size() - 1) + ".");
             sender.addChatMessage(new ChatComponentText(output.toString()));
-        } else {
+        }
+
+        else
+        {
             String commandName = arguments[1];
             sender.addChatMessage(new ChatComponentText(StringHelper.localize("info.savagecore.command." + commandName)));
         }

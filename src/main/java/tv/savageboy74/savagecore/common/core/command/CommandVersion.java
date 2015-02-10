@@ -45,7 +45,7 @@ public class CommandVersion implements ISubCommand
     @Override
     public void handleCommand(ICommandSender sender, String[] arguments)
     {
-        sender.addChatMessage (new ChatComponentText(Font.Color.AQUA + "[SavageCore] " + Font.Format.RESET +  StringHelper.localize("info.savagecore.command.version.0") + " " + EnumChatFormatting.LIGHT_PURPLE + Reference.VERSION + "."));
+        sender.addChatMessage (new ChatComponentText(Font.Color.AQUA + "[SavageCore] " + Font.Format.RESET +  StringHelper.localize("info.savagecore.command.version.0") + " " + EnumChatFormatting.LIGHT_PURPLE + Reference.VERSION));
     }
 
     @Override
