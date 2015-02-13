@@ -32,6 +32,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -71,11 +72,11 @@ public class Utils
             world.spawnEntityInWorld(entityItem);
         }
     }
-//
-//    public static boolean isEnabled(ItemStack itemStack)
-//    {
-//        return NBTHelper.getBoolean(itemStack, "enabled");
-//    }
+
+    public static boolean isEnabled(ItemStack itemStack)
+    {
+        return NBTHelper.getBoolean(itemStack, "enabled");
+    }
 
     public static Object getIdent(Item item) {
         return item == null ? null : Item.itemRegistry.getNameForObject(item);
@@ -109,45 +110,33 @@ public class Utils
     {
         GameRegistry.addSmelting(dust, ingot, exp);
     }
-//
-//    public static boolean consumeFirstInventoryItem(IInventory inventory, ItemStack stack) {
-//        int slotWithStack = getFirstSlotWithStack(inventory, stack);
-//        if (slotWithStack > -1) {
-//            ItemStack stackInSlot = inventory.getStackInSlot(slotWithStack);
-//            stackInSlot.stackSize--;
-//            if (stackInSlot.stackSize == 0) {
-//                inventory.setInventorySlotContents(slotWithStack, null);
-//            }
-//            return true;
-//        }
-//        return false;
-//    }
-//
-//    public static int getFirstSlotWithStack(IInventory inventory, ItemStack stack) {
-//        inventory = getInventory(inventory);
-//        for (int i = 0; i < inventory.getSizeInventory(); i++) {
-//            ItemStack stackInSlot = inventory.getStackInSlot(i);
-//            if (stackInSlot != null && stackInSlot.isItemEqual(stack)) { return i; }
-//        }
-//        return -1;
-//    }
-//
-//    public static IInventory getInventory(IInventory inventory) {
-//        if (inventory instanceof TileEntityChest) return doubleChestFix((TileEntity)inventory);
-//        return inventory;
-//    }
-//
-//    private static IInventory doubleChestFix(TileEntity te) {
-//        final World world = te.getWorldObj();
-//        final int x = te.xCoord;
-//        final int y = te.yCoord;
-//        final int z = te.zCoord;
-//        if (world.getBlock(x - 1, y, z) == net.minecraft.init.Blocks.chest) return new InventoryLargeChest("Large chest", (IInventory)world.getTileEntity(x - 1, y, z), (IInventory)te);
-//        if (world.getBlock(x + 1, y, z) == net.minecraft.init.Blocks.chest) return new InventoryLargeChest("Large chest", (IInventory)te, (IInventory)world.getTileEntity(x + 1, y, z));
-//        if (world.getBlock(x, y, z - 1) == net.minecraft.init.Blocks.chest) return new InventoryLargeChest("Large chest", (IInventory)world.getTileEntity(x, y, z - 1), (IInventory)te);
-//        if (world.getBlock(x, y, z + 1) == net.minecraft.init.Blocks.chest) return new InventoryLargeChest("Large chest", (IInventory)te, (IInventory)world.getTileEntity(x, y, z + 1));
-//        return (te instanceof IInventory)? (IInventory)te : null;
-//    }
+
+    public static boolean consumeFirstInventoryItem(IInventory inventory, ItemStack stack) {
+        int slotWithStack = getFirstSlotWithStack(inventory, stack);
+        if (slotWithStack > -1) {
+            ItemStack stackInSlot = inventory.getStackInSlot(slotWithStack);
+            stackInSlot.stackSize--;
+            if (stackInSlot.stackSize == 0) {
+                inventory.setInventorySlotContents(slotWithStack, null);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static int getFirstSlotWithStack(IInventory inventory, ItemStack stack) {
+        inventory = getInventory(inventory);
+        for (int i = 0; i < inventory.getSizeInventory(); i++) {
+            ItemStack stackInSlot = inventory.getStackInSlot(i);
+            if (stackInSlot != null && stackInSlot.isItemEqual(stack)) { return i; }
+        }
+        return -1;
+    }
+
+    public static IInventory getInventory(IInventory inventory)
+    {
+        return inventory;
+    }
 
     public static ItemStack returnItem(ItemStack stack) {
         return (stack == null || stack.stackSize <= 0)? null : stack.copy();

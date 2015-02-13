@@ -36,109 +36,33 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 
-public class CommandHandler extends CommandBase {
+public class CommandHandler extends CommandBase
+{
+    private static TMap<String, ISubCommand> commands = new THashMap<String, ISubCommand>();
+
     @Override
-    public String getName()
-    {
-        return null;
+    public String getName() {
+        return "savagecore";
     }
 
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return null;
+        return "/" + getName() + " help";
     }
 
     @Override
     public void execute(ICommandSender sender, String[] args) throws CommandException
     {
+        if (args.length <= 0) {
+            throw new CommandException("Type '" + getCommandUsage(sender) + "' for help.");
+        }
 
+        if (commands.containsKey(args[0])) {
+            commands.get(args[0]).handleCommand(sender, args);
+            return;
+        }
+
+        throw new CommandException("Type '" + getCommandUsage(sender) + "' for help.");
     }
-//
-//    public static final String COMMAND_DISALLOWED = StringHelper.LIGHT_RED + "You are not allowed to use this command.";
-//
-//    public static CommandHandler instance = new CommandHandler();
-//
-//    private static TMap<String, ISubCommand> commands = new THashMap<String, ISubCommand>();
-//
-//    static {
-//        registerSubCommand(CommandHelp.instance);
-//        registerSubCommand(CommandVersion.instance);
-//        registerSubCommand(CommandUpdate.instance);
-//    }
-//
-//    public static void initCommands(FMLServerStartingEvent event) {
-//
-//        event.registerServerCommand(instance);
-//    }
-//
-//    public static boolean registerSubCommand(ISubCommand subCommand) {
-//
-//        if (!commands.containsKey(subCommand.getCommandName())) {
-//            commands.put(subCommand.getCommandName(), subCommand);
-//            return true;
-//        }
-//        return false;
-//    }
-//
-//    public static Set<String> getCommandList() {
-//
-//        return commands.keySet();
-//    }
-//
-//    @Override
-//    public List getCommandAliases() {
-//
-//        return null;
-//    }
-//
-//    @Override
-//    public String getName()
-//    {
-//        return "savagecore";
-//    }
-//
-//    @Override
-//    public String getCommandUsage(ICommandSender sender) {
-//
-//        return "/" + getName() + " help";
-//    }
-//
-//    @Override
-//    public void execute(ICommandSender sender, String[] args) throws CommandException
-//    {
-//
-//    }
-//
-//    @Override
-//    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender) {
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public void processCommand(ICommandSender sender, String[] arguments) {
-//
-//        if (arguments.length <= 0) {
-//            throw new WrongUsageException("Type '" + getCommandUsage(sender) + "' for help.");
-//        }
-//
-//        if (commands.containsKey(arguments[0])) {
-//            commands.get(arguments[0]).handleCommand(sender, arguments);
-//            return;
-//        }
-//        throw new WrongUsageException("Type '" + getCommandUsage(sender) + "' for help.");
-//    }
-//
-//    @Override
-//    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr) {
-//
-//        if (par2ArrayOfStr.length == 1) {
-//            return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, commands.keySet());
-//        } else if (commands.containsKey(par2ArrayOfStr[0])) {
-//            return commands.get(par2ArrayOfStr[0]).addTabCompletionOptions(par1ICommandSender, par2ArrayOfStr);
-//        }
-//        return null;
-//    }
-
 }
