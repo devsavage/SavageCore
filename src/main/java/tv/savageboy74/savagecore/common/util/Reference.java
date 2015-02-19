@@ -7,16 +7,14 @@ public class Reference
 
     public static final String MOD_ID = "SavageCore";
     public static final String MOD_NAME = "SavageCore";
-    public static final String MOD_UPDATE_NUMBER = "-1.4";
-    public static final String VERSION = MC_VERSION + MOD_UPDATE_NUMBER;
-    public static final String DEPEND_VERSION = "1.4";
+    public static final String VERSION = "1.8-1.5";
 
     public static final String CLIENT_PROXY = "tv.savageboy74.savagecore.client.proxy.ClientProxy";
     public static final String SERVER_PROXY = "tv.savageboy74.savagecore.common.proxy.CommonProxy";
 
     public static final String GUI_FACTORY_CLASS = "tv.savageboy74.savagecore.client.gui.GuiFactory";
 
-    public static final int UPDATE_NUMBER = 5;
+    public static final int UPDATE_NUMBER = 6;
     public static String UPDATES = "";
     public static boolean OUTDATED = false;
 
