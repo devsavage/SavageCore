@@ -25,7 +25,7 @@ package tv.savageboy74.savagecore.client.gui;
 
 import net.minecraftforge.fml.client.config.GuiConfig;
 import tv.savageboy74.savagecore.common.config.ConfigHandler;
-import tv.savageboy74.savagecore.common.util.Reference;
+import tv.savageboy74.savagecore.common.util.SavageCoreProps;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
@@ -36,7 +36,7 @@ public class ModGuiConfig extends GuiConfig
     {
         super(guiScreen,
                 new ConfigElement(ConfigHandler.configuration.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
-                Reference.MOD_ID,
+                SavageCoreProps.MOD_ID,
                 false,
                 false,
                 GuiConfig.getAbridgedConfigPath(ConfigHandler.configuration.toString()));

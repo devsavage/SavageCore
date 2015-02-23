@@ -11,17 +11,17 @@ public class UpdateChecker {
 
     public static void checkForUpdates() throws IOException
     {
-        int currentVersion = Reference.UPDATE_NUMBER;
+        int currentVersion = SavageCoreProps.UPDATE_NUMBER;
         int nextVersion = getNewest();
 
         if (currentVersion < nextVersion)
         {
-            Reference.NEWVERSION = updatedVersion(nextVersion);
-            Reference.OUTDATED = true;
+            SavageCoreProps.NEWVERSION = updatedVersion(nextVersion);
+            SavageCoreProps.OUTDATED = true;
         }
         else
         {
-            Reference.OUTDATED = false;
+            SavageCoreProps.OUTDATED = false;
         }
     }
 

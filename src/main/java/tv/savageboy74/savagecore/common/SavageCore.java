@@ -33,10 +33,9 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import tv.savageboy74.savagecore.common.config.ConfigHandler;
-import tv.savageboy74.savagecore.common.core.command.CommandHandler;
 import tv.savageboy74.savagecore.common.proxy.CommonProxy;
 import tv.savageboy74.savagecore.common.util.LogHelper;
-import tv.savageboy74.savagecore.common.util.Reference;
+import tv.savageboy74.savagecore.common.util.SavageCoreProps;
 import tv.savageboy74.savagecore.common.util.UpdateChecker;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
@@ -44,14 +43,14 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.io.IOException;
 
-@Mod(modid = Reference.MOD_ID, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
+@Mod(modid = SavageCoreProps.MOD_ID, version = SavageCoreProps.VERSION, guiFactory = SavageCoreProps.GUI_FACTORY_CLASS)
 public class SavageCore
 {
 
-    @Mod.Instance(Reference.MOD_ID)
+    @Mod.Instance(SavageCoreProps.MOD_ID)
     public static SavageCore instance;
 
-    @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
+    @SidedProxy(clientSide = SavageCoreProps.CLIENT_PROXY, serverSide = SavageCoreProps.SERVER_PROXY)
     public static CommonProxy proxy;
 
     @Mod.EventHandler
@@ -95,7 +94,7 @@ public class SavageCore
     @SubscribeEvent
     public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event)
     {
-        if (Reference.OUTDATED)
+        if (SavageCoreProps.OUTDATED)
         {
             EnumChatFormatting darkRed = EnumChatFormatting.DARK_RED;
             EnumChatFormatting aqua = EnumChatFormatting.AQUA;
@@ -103,9 +102,9 @@ public class SavageCore
             EnumChatFormatting reset = EnumChatFormatting.RESET;
             EnumChatFormatting green = EnumChatFormatting.GREEN;
 
-            String name = Reference.MOD_NAME;
+            String name = SavageCoreProps.MOD_NAME;
             String outdatedText = aqua + "[" + name + "] " + reset + "This version of " + green + name + reset + " is" + darkRed + " outdated!";
-            String versionText =  "Current Version: " + darkRed + Reference.VERSION + reset + " Newest Version: " + darkGreen +  Reference.NEWVERSION;
+            String versionText =  "Current Version: " + darkRed + SavageCoreProps.VERSION + reset + " Newest Version: " + darkGreen +  SavageCoreProps.NEWVERSION;
 
             event.player.addChatComponentMessage(new ChatComponentText(outdatedText));
             event.player.addChatComponentMessage(new ChatComponentText(versionText));
