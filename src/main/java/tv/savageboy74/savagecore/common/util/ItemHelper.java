@@ -31,6 +31,7 @@ import net.minecraft.util.StatCollector;
 import java.util.Comparator;
 import java.util.UUID;
 
+//TODO Check NBT
 public class ItemHelper
 {
     public static ItemStack cloneItemStack(ItemStack itemStack, int stackSize)
