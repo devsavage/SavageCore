@@ -39,6 +39,8 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
+import java.util.Random;
+
 public class Utils
 {
     public static String localize(String s)
@@ -153,5 +155,10 @@ public class Utils
     public static boolean isClient()
     {
         return FMLCommonHandler.instance().getEffectiveSide().isClient();
+    }
+
+    public static double gaussian(Random rand)
+    {
+        return rand.nextGaussian() / 6;
     }
 }
