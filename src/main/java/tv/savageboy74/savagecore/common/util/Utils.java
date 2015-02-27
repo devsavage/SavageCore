@@ -24,7 +24,11 @@ package tv.savageboy74.savagecore.common.util;
  */
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.EnumFaceDirection;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.Item;
@@ -32,13 +36,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public class Utils
@@ -160,5 +168,122 @@ public class Utils
     public static double gaussian(Random rand)
     {
         return rand.nextGaussian() / 6;
+    }
+
+    public static boolean isEqual(Block blockA, Block blockB)
+    {
+        if (blockA == blockB)
+        {
+            return true;
+        }
+
+        if (blockA == null | blockB == null)
+        {
+            return false;
+        }
+
+        return blockA.equals(blockB) || blockA.isAssociatedBlock(blockB);
+    }
+
+    public static List<ItemStack> breakBlock(EntityPlayer player, World worldObj, BlockPos pos, Block block, int fortune, boolean doBreak, boolean silkTouch, IBlockState state) {
+
+        if (block.getBlockHardness(worldObj, pos) == -1) {
+            return new LinkedList<ItemStack>();
+        }
+        int meta = worldObj.getBlockState(pos).getBlock().getMetaFromState(state);
+        List<ItemStack> stacks = null;
+        if (silkTouch && block.canSilkHarvest(worldObj, pos, block.getDefaultState(), player)) {
+            stacks = new LinkedList<ItemStack>();
+            stacks.add(createStackedBlock(block, meta));
+        } else {
+            stacks = block.getDrops(worldObj, pos, state, fortune);
+        }
+        if (!doBreak) {
+            return stacks;
+        }
+        worldObj.playAuxSFXAtEntity(null, 2001, pos, Block.getIdFromBlock(block) + (meta << 12));
+        worldObj.setBlockToAir(pos);
+
+        List<EntityItem> result = worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.fromBounds(pos.getX() - 2, pos.getY() - 2, pos.getZ() - 2, pos.getX() + 3, pos.getY() + 3, pos.getZ() + 3));
+        for (int i = 0; i < result.size(); i++)
+        {
+            EntityItem entity = result.get(i);
+            if (entity.isDead || entity.getEntityItem().stackSize <= 0) {
+                continue;
+            }
+            stacks.add(entity.getEntityItem());
+            entity.worldObj.removeEntity(entity);
+        }
+        return stacks;
+    }
+
+    public static ItemStack createStackedBlock(Block block, int bMeta)
+    {
+
+        Item item = Item.getItemFromBlock(block);
+        if (item.getHasSubtypes()) {
+            return new ItemStack(item, 1, bMeta);
+        }
+        return new ItemStack(item, 1, 0);
+    }
+
+    public static NBTTagCompound setItemStackTagName(NBTTagCompound tag, String name) {
+
+        if (name == "") {
+            return null;
+        }
+        if (tag == null) {
+            tag = new NBTTagCompound();
+        }
+        if (!tag.hasKey("display")) {
+            tag.setTag("display", new NBTTagCompound());
+        }
+        tag.getCompoundTag("display").setString("Name", name);
+
+        return tag;
+    }
+
+    public static ItemStack readItemStackFromNBT(NBTTagCompound nbt) {
+
+        ItemStack stack = new ItemStack(Item.getItemById(nbt.getShort("id")));
+        stack.stackSize = nbt.getInteger("Count");
+        stack.setItemDamage(Math.max(0, nbt.getShort("Damage")));
+
+        if (nbt.hasKey("tag", 10))
+        {
+            nbt.getCompoundTag("tag");
+        }
+
+        return stack;
+    }
+
+    public static NBTTagCompound writeItemStackToNBT(ItemStack stack, NBTTagCompound nbt) {
+
+        nbt.setShort("id", (short) Item.getIdFromItem(stack.getItem()));
+        nbt.setInteger("Count", stack.stackSize);
+        nbt.setShort("Damage", (short) getItemDamage(stack));
+
+        if (stack.getTagCompound() != null)
+        {
+            nbt.setTag("tag", stack.getTagCompound());
+        }
+        return nbt;
+    }
+
+    public static NBTTagCompound writeItemStackToNBT(ItemStack stack, int amount, NBTTagCompound nbt) {
+
+        nbt.setShort("id", (short) Item.getIdFromItem(stack.getItem()));
+        nbt.setInteger("Count", amount);
+        nbt.setShort("Damage", (short) getItemDamage(stack));
+
+        if (stack.getTagCompound() != null) {
+            nbt.setTag("tag", stack.getTagCompound());
+        }
+        return nbt;
+    }
+
+    public static int getItemDamage(ItemStack stack) {
+
+        return Items.diamond.getDamage(stack);
     }
 }
