@@ -36,6 +36,13 @@ public class NBTHelper
     public static final String OWNER = "owner";
     public static final String OWNER_UUID_MOST_SIG = "ownerUUIDMostSig";
     public static final String OWNER_UUID_LEAST_SIG = "ownerUUIDLeastSig";
+    public static void clearStatefulNBTTags(ItemStack itemStack)
+    {
+        if (NBTHelper.hasTag(itemStack, Strings.NBT.LOOT_BAG_GUI_OPEN))
+        {
+            NBTHelper.removeTag(itemStack, Strings.NBT.LOOT_BAG_GUI_OPEN);
+        }
+    }
 
     public static boolean hasTag(ItemStack itemStack, String keyName)
     {
@@ -52,7 +59,7 @@ public class NBTHelper
 
     public static boolean hasUUID(ItemStack itemStack)
     {
-        return hasTag(itemStack, UUID_MOST_SIG) && hasTag(itemStack, UUID_LEAST_SIG);
+        return hasTag(itemStack, Strings.NBT.UUID_MOST_SIG) && hasTag(itemStack, Strings.NBT.UUID_LEAST_SIG);
     }
 
     public static void setUUID(ItemStack itemStack)
@@ -60,11 +67,11 @@ public class NBTHelper
         initNBTTagCompound(itemStack);
 
         // Set a UUID on the Alchemical Bag, if one doesn't exist already
-        if (!hasTag(itemStack, OWNER_UUID_MOST_SIG) && !hasTag(itemStack, UUID_LEAST_SIG))
+        if (!hasTag(itemStack, Strings.NBT.UUID_MOST_SIG) && !hasTag(itemStack, Strings.NBT.UUID_LEAST_SIG))
         {
             UUID itemUUID = UUID.randomUUID();
-            setLong(itemStack, UUID_MOST_SIG, itemUUID.getMostSignificantBits());
-            setLong(itemStack, UUID_LEAST_SIG, itemUUID.getLeastSignificantBits());
+            setLong(itemStack, Strings.NBT.UUID_MOST_SIG, itemUUID.getMostSignificantBits());
+            setLong(itemStack, Strings.NBT.UUID_LEAST_SIG, itemUUID.getLeastSignificantBits());
         }
     }
 
