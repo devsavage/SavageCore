@@ -12,9 +12,19 @@ public class LogHelper
         FMLLog.log(SavageCoreProps.MOD_NAME, logLevel, String.valueOf(object));
     }
 
-    public static void advLog(Level level, Throwable err, String format, Object... data)
+    public static void advLog(String modName, Level logLevel, Object object)
     {
-        FMLLog.log(SavageCoreProps.MOD_NAME, level, err, format, data);
+        FMLLog.log(modName, logLevel, String.valueOf(object));
+    }
+
+    public static void advLog(String modName, Level level, Throwable err, String format, Object... data)
+    {
+        FMLLog.log(modName, level, err, format, data);
+    }
+
+    public static void advLog(String modName, Level level, String format, Object... data)
+    {
+        FMLLog.log(modName, level, format, data);
     }
 
     public static void all(Object object)
@@ -57,33 +67,103 @@ public class LogHelper
         log(Level.WARN, object);
     }
 
-    public static void advError(Throwable err, String format, Object... data)
+    public static void all(String modName, Object object)
     {
-        advLog(Level.ERROR, err, format,  data);
+        advLog(modName, Level.ALL, object);
     }
 
-    public static void advInfo(Throwable err, String format, Object... data)
+    public static void debug(String modName, Object object)
     {
-        advLog(Level.INFO, err, format,  data);
+        advLog(modName, Level.DEBUG, object);
     }
 
-    public static void advWarn(Throwable err, String format, Object... data)
+    public static void error(String modName, Object object)
     {
-        advLog(Level.WARN, err, format, data);
+        advLog(modName, Level.ERROR, object);
     }
 
-    public static void advFatal(Throwable err, String format, Object... data)
+    public static void fatal(String modName, Object object)
     {
-        advLog(Level.FATAL, err, format, data);
+        advLog(modName, Level.FATAL, object);
     }
 
-    public static void advAll(Throwable err, String format, Object... data)
+    public static void info(String modName, Object object)
     {
-        advLog(Level.ALL, err, format, data);
+        advLog(modName, Level.INFO, object);
     }
 
-    public static void advDebug(Throwable err, String format, Object... data)
+    public static void off(String modName, Object object)
     {
-        advLog(Level.DEBUG, err, format, data);
+        advLog(modName, Level.OFF, object);
+    }
+
+    public static void trace(String modName, Object object)
+    {
+        advLog(modName, Level.TRACE, object);
+    }
+
+    public static void warn(String modName, Object object)
+    {
+        advLog(modName, Level.WARN, object);
+    }
+
+    public static void advError(String modName, String format, Object... data)
+    {
+        advLog(modName, Level.ERROR, format,  data);
+    }
+
+    public static void advInfo(String modName, String format, Object... data)
+    {
+        advLog(modName, Level.INFO, format,  data);
+    }
+
+    public static void advWarn(String modName, String format, Object... data)
+    {
+        advLog(modName, Level.WARN, format, data);
+    }
+
+    public static void advFatal(String modName, String format, Object... data)
+    {
+        advLog(modName, Level.FATAL, format, data);
+    }
+
+    public static void advAll(String modName, String format, Object... data)
+    {
+        advLog(modName, Level.ALL, format, data);
+    }
+
+    public static void advDebug(String modName, String format, Object... data)
+    {
+        advLog(modName, Level.DEBUG, format, data);
+    }
+
+    public static void advError(String modName, Throwable err, String format, Object... data)
+    {
+        advLog(modName, Level.ERROR, err, format,  data);
+    }
+
+    public static void advInfo(String modName, Throwable err, String format, Object... data)
+    {
+        advLog(modName, Level.INFO, err, format,  data);
+    }
+
+    public static void advWarn(String modName, Throwable err, String format, Object... data)
+    {
+        advLog(modName, Level.WARN, err, format, data);
+    }
+
+    public static void advFatal(String modName, Throwable err, String format, Object... data)
+    {
+        advLog(modName, Level.FATAL, err, format, data);
+    }
+
+    public static void advAll(String modName, Throwable err, String format, Object... data)
+    {
+        advLog(modName, Level.ALL, err, format, data);
+    }
+
+    public static void advDebug(String modName, Throwable err, String format, Object... data)
+    {
+        advLog(modName, Level.DEBUG, err, format, data);
     }
 }
