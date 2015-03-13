@@ -1,7 +1,7 @@
 package tv.savageboy74.savagecore.common.util;
 
 /*
- * Utils.java
+ * MiscUtils.java
  * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -49,29 +49,32 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class Utils
+public class MiscUtils
 {
     public static String localize(String s)
     {
         return StatCollector.translateToLocal(s);
     }
 
-    public static EntityItem dropItemStackInWorld(World worldObj, double x, double y, double z, ItemStack stack) {
+    public static EntityItem dropItemStackInWorld(World worldObj, BlockPos pos, ItemStack stack) {
         float f = 0.7F;
         float d0 = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5F;
         float d1 = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5F;
         float d2 = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5F;
-        EntityItem entityitem = new EntityItem(worldObj, x + d0, y + d1, z + d2, stack);
+        EntityItem entityitem = new EntityItem(worldObj, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, stack);
         entityitem.setPickupDelay(10);
+
         if (stack.hasTagCompound())
         {
             entityitem.getEntityItem().setTagCompound((NBTTagCompound)stack.getTagCompound().copy());
         }
+
         worldObj.spawnEntityInWorld(entityitem);
         return entityitem;
     }
 
-    public static void dropAsEntity(World world, int i, int j, int k, ItemStack stack) {
+    public static void dropAsEntity(World world, int i, int j, int k, ItemStack stack)
+    {
         if(stack != null) {
             double d = 0.7D;
             double e = (double)world.rand.nextFloat() * d + (1.0D - d) * 0.5D;
@@ -88,11 +91,13 @@ public class Utils
         return NBTHelper.getBoolean(itemStack, "enabled");
     }
 
-    public static Object getIdent(Item item) {
+    public static Object getIdent(Item item)
+    {
         return item == null ? null : Item.itemRegistry.getNameForObject(item);
     }
 
-    public static Object getIdent(Block block) {
+    public static Object getIdent(Block block)
+    {
         return block == null ? null : Block.blockRegistry.getNameForObject(block);
     }
 
@@ -152,11 +157,13 @@ public class Utils
         return (stack == null || stack.stackSize <= 0)? null : stack.copy();
     }
 
-    public static final double lengthSq(double x, double y, double z) {
+    public static final double lengthSq(double x, double y, double z)
+    {
         return x * x + y * y + z * z;
     }
 
-    public static final double lengthSq(double x, double z) {
+    public static final double lengthSq(double x, double z)
+    {
         return x * x + z * z;
     }
 
@@ -217,33 +224,42 @@ public class Utils
         return stacks;
     }
 
-    public static ItemStack createStackedBlock(Block block, int bMeta)
+    public static ItemStack createStackedBlock(Block block, int meta)
     {
 
         Item item = Item.getItemFromBlock(block);
-        if (item.getHasSubtypes()) {
-            return new ItemStack(item, 1, bMeta);
+        if (item.getHasSubtypes())
+        {
+            return new ItemStack(item, 1, meta);
         }
+
         return new ItemStack(item, 1, 0);
     }
 
     public static NBTTagCompound setItemStackTagName(NBTTagCompound tag, String name) {
 
-        if (name == "") {
+        if (name == "")
+        {
             return null;
         }
-        if (tag == null) {
+
+        if (tag == null)
+        {
             tag = new NBTTagCompound();
         }
-        if (!tag.hasKey("display")) {
+
+        if (!tag.hasKey("display"))
+        {
             tag.setTag("display", new NBTTagCompound());
         }
+
         tag.getCompoundTag("display").setString("Name", name);
 
         return tag;
     }
 
-    public static ItemStack readItemStackFromNBT(NBTTagCompound nbt) {
+    public static ItemStack readItemStackFromNBT(NBTTagCompound nbt)
+    {
 
         ItemStack stack = new ItemStack(Item.getItemById(nbt.getShort("id")));
         stack.stackSize = nbt.getInteger("Count");
@@ -257,7 +273,8 @@ public class Utils
         return stack;
     }
 
-    public static NBTTagCompound writeItemStackToNBT(ItemStack stack, NBTTagCompound nbt) {
+    public static NBTTagCompound writeItemStackToNBT(ItemStack stack, NBTTagCompound nbt)
+    {
 
         nbt.setShort("id", (short) Item.getIdFromItem(stack.getItem()));
         nbt.setInteger("Count", stack.stackSize);
@@ -270,7 +287,8 @@ public class Utils
         return nbt;
     }
 
-    public static NBTTagCompound writeItemStackToNBT(ItemStack stack, int amount, NBTTagCompound nbt) {
+    public static NBTTagCompound writeItemStackToNBT(ItemStack stack, int amount, NBTTagCompound nbt)
+    {
 
         nbt.setShort("id", (short) Item.getIdFromItem(stack.getItem()));
         nbt.setInteger("Count", amount);
@@ -282,7 +300,8 @@ public class Utils
         return nbt;
     }
 
-    public static int getItemDamage(ItemStack stack) {
+    public static int getItemDamage(ItemStack stack)
+    {
 
         return Items.diamond.getDamage(stack);
     }

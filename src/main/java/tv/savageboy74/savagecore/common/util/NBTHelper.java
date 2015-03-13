@@ -31,18 +31,6 @@ import java.util.UUID;
 
 public class NBTHelper
 {
-    public static final String UUID_MOST_SIG = "UUIDMostSig";
-    public static final String UUID_LEAST_SIG = "UUIDLeastSig";
-    public static final String OWNER = "owner";
-    public static final String OWNER_UUID_MOST_SIG = "ownerUUIDMostSig";
-    public static final String OWNER_UUID_LEAST_SIG = "ownerUUIDLeastSig";
-    public static void clearStatefulNBTTags(ItemStack itemStack)
-    {
-        if (NBTHelper.hasTag(itemStack, Strings.NBT.LOOT_BAG_GUI_OPEN))
-        {
-            NBTHelper.removeTag(itemStack, Strings.NBT.LOOT_BAG_GUI_OPEN);
-        }
-    }
 
     public static boolean hasTag(ItemStack itemStack, String keyName)
     {

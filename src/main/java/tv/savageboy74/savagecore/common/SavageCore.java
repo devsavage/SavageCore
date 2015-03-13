@@ -62,13 +62,13 @@ public class SavageCore
         FMLCommonHandler.instance().bus().register(this);
         MinecraftForge.EVENT_BUS.register(this);
 
-        LogHelper.info("Pre-Initialization Complete.");
+        LogHelper.info(SavageCoreProps.MOD_NAME, "Pre-Initialization Complete.");
 
         if (ConfigHandler.checkForUpdates)
         {
             try
             {
-                LogHelper.info("Checking For Updates...");
+                LogHelper.info(SavageCoreProps.MOD_NAME, "Checking For Updates...");
                 UpdateChecker.checkForUpdates();
             }
 
@@ -88,7 +88,7 @@ public class SavageCore
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        LogHelper.info("Initialization Complete.");
+        LogHelper.info(SavageCoreProps.MOD_NAME, "Initialization Complete.");
     }
 
     @SubscribeEvent
@@ -114,6 +114,6 @@ public class SavageCore
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        LogHelper.info("Post-Initialization Complete.");
+        LogHelper.info(SavageCoreProps.MOD_NAME, "Post-Initialization Complete.");
     }
 }
