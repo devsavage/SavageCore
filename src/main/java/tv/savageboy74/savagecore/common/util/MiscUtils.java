@@ -56,7 +56,8 @@ public class MiscUtils
         return StatCollector.translateToLocal(s);
     }
 
-    public static EntityItem dropItemStackInWorld(World worldObj, BlockPos pos, ItemStack stack) {
+    public static EntityItem dropItemStackInWorld(World worldObj, BlockPos pos, ItemStack stack)
+    {
         float f = 0.7F;
         float d0 = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5F;
         float d1 = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5F;
@@ -106,45 +107,34 @@ public class MiscUtils
         return 0.05F;
     }
 
-    public static void addOreBlockRecipe(Block block, Item item)
+    public static boolean consumeFirstInventoryItem(IInventory inventory, ItemStack stack)
     {
-        GameRegistry.addRecipe(new ItemStack(block), "XXX", "XXX", "XXX", 'X', item);
-    }
-
-    public static void addBlockToIngotRecipe(Item item, Block block)
-    {
-        GameRegistry.addShapelessRecipe(new ItemStack(item, 9), block);
-    }
-
-    public static void addIngotSmelt(Block block, ItemStack itemStack, float f)
-    {
-        GameRegistry.addSmelting(block, itemStack, f);
-    }
-
-    public static void addDustToIngotSmelt(ItemStack dust, ItemStack ingot, float exp)
-    {
-        GameRegistry.addSmelting(dust, ingot, exp);
-    }
-
-    public static boolean consumeFirstInventoryItem(IInventory inventory, ItemStack stack) {
         int slotWithStack = getFirstSlotWithStack(inventory, stack);
         if (slotWithStack > -1) {
             ItemStack stackInSlot = inventory.getStackInSlot(slotWithStack);
             stackInSlot.stackSize--;
-            if (stackInSlot.stackSize == 0) {
+            if (stackInSlot.stackSize == 0)
+            {
                 inventory.setInventorySlotContents(slotWithStack, null);
             }
+
             return true;
         }
         return false;
     }
 
-    public static int getFirstSlotWithStack(IInventory inventory, ItemStack stack) {
+    public static int getFirstSlotWithStack(IInventory inventory, ItemStack stack)
+    {
         inventory = getInventory(inventory);
-        for (int i = 0; i < inventory.getSizeInventory(); i++) {
+        for (int i = 0; i < inventory.getSizeInventory(); i++)
+        {
             ItemStack stackInSlot = inventory.getStackInSlot(i);
-            if (stackInSlot != null && stackInSlot.isItemEqual(stack)) { return i; }
+            if (stackInSlot != null && stackInSlot.isItemEqual(stack))
+            {
+                return i;
+            }
         }
+
         return -1;
     }
 
@@ -153,7 +143,8 @@ public class MiscUtils
         return inventory;
     }
 
-    public static ItemStack returnItem(ItemStack stack) {
+    public static ItemStack returnItem(ItemStack stack)
+    {
         return (stack == null || stack.stackSize <= 0)? null : stack.copy();
     }
 
@@ -194,20 +185,30 @@ public class MiscUtils
 
     public static List<ItemStack> breakBlock(EntityPlayer player, World worldObj, BlockPos pos, Block block, int fortune, boolean doBreak, boolean silkTouch, IBlockState state) {
 
-        if (block.getBlockHardness(worldObj, pos) == -1) {
+        if (block.getBlockHardness(worldObj, pos) == -1)
+        {
             return new LinkedList<ItemStack>();
         }
+
         int meta = worldObj.getBlockState(pos).getBlock().getMetaFromState(state);
         List<ItemStack> stacks = null;
-        if (silkTouch && block.canSilkHarvest(worldObj, pos, block.getDefaultState(), player)) {
+
+        if (silkTouch && block.canSilkHarvest(worldObj, pos, block.getDefaultState(), player))
+        {
             stacks = new LinkedList<ItemStack>();
             stacks.add(createStackedBlock(block, meta));
-        } else {
+        }
+
+        else
+        {
             stacks = block.getDrops(worldObj, pos, state, fortune);
         }
-        if (!doBreak) {
+
+        if (!doBreak)
+        {
             return stacks;
         }
+
         worldObj.playAuxSFXAtEntity(null, 2001, pos, Block.getIdFromBlock(block) + (meta << 12));
         worldObj.setBlockToAir(pos);
 
@@ -218,9 +219,11 @@ public class MiscUtils
             if (entity.isDead || entity.getEntityItem().stackSize <= 0) {
                 continue;
             }
+
             stacks.add(entity.getEntityItem());
             entity.worldObj.removeEntity(entity);
         }
+
         return stacks;
     }
 
@@ -302,7 +305,6 @@ public class MiscUtils
 
     public static int getItemDamage(ItemStack stack)
     {
-
         return Items.diamond.getDamage(stack);
     }
 }
