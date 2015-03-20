@@ -24,6 +24,7 @@ package tv.savageboy74.savagecore.common.util;
  */
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.EnumFaceDirection;
 import net.minecraft.entity.item.EntityItem;
@@ -306,5 +307,11 @@ public class MiscUtils
     public static int getItemDamage(ItemStack stack)
     {
         return Items.diamond.getDamage(stack);
+    }
+
+    public static boolean isBlockUnbreakable(World world, BlockPos pos)
+    {
+        Block cBlock = world.getBlockState(pos).getBlock();
+        return cBlock instanceof BlockLiquid || cBlock.getBlockHardness(world, pos) < 0;
     }
 }
