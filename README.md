@@ -20,8 +20,8 @@ Links
 <br>
 
 <hr>
-<p style="text-align:center">This work is licensed under a <a rel="license" href="http://opensource.org/licenses/MIT" target="_blank">MIT License </a></p>  
+This work is licensed under a <a rel="license" href="http://opensource.org/licenses/MIT" target="_blank">MIT License </a>    
 <br>
 <br>
-<div style="text-align:center"><a rel="license" href="http://opensource.org/licenses/MIT" target="_blank"> <img src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png"/></a></div>    
+<a rel="license" href="http://opensource.org/licenses/MIT" target="_blank"> <img src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png"/></a>  
 <br>  
