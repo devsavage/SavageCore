@@ -1,7 +1,5 @@
-#Command Output
 info.savagecore.command.help=The command to help you out with other commands!
 
-#Command Title
 info.savagecore.command.help.0=Available commands are:
 info.savagecore.command.version.0=Current Version:
 info.savagecore.command.update.0=Go to:

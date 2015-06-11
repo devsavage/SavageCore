@@ -1,6 +1,6 @@
 Changelog:
 
-	Build 0.2:
-		savageboy74: Added Command and String Helper. Getting ready for more implementation.
-	Build 0.1:
-		savageboy74: Initial commit, Added ConfigHandler, Added core components
+	Build 1.2:
+		savageboy74: More fixes and additions
+	Build 1.1:
+		savageboy74: Initial update to Minecraft 1.8

@@ -1,8 +1,8 @@
-package tv.savageboy74.savagecore.common.proxy;
+package tv.savageboy74.savagecore.common.helpers;
 
 /*
- * CommonProxy.java
- * Copyright (C) 2014 - 2015 Savage - github.com/savageboy74
+ * ModelHelper.java
+ * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,32 @@ package tv.savageboy74.savagecore.common.proxy;
  * THE SOFTWARE.
  */
 
-public class CommonProxy
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+
+public class ModelHelper
 {
+    public static void registerItem(Item item, int metadata, String itemName)
+    {
+        ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
+        mesher.register(item, metadata, new ModelResourceLocation(itemName, "inventory"));
+    }
+
+    public static void registerBlock(Block block, int metadata, String blockName)
+    {
+        registerItem(Item.getItemFromBlock(block), metadata, blockName);
+    }
+
+    public static void registerBlock(Block block, String blockName)
+    {
+        registerBlock(block, 0, blockName);
+    }
+
+    public static void registerItem(Item item, String itemName)
+    {
+        registerItem(item, 0, itemName);
+    }
 }
