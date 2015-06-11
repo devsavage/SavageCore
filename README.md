@@ -1,9 +1,7 @@
-SavageCore
+SavageCore [![Build Status](https://drone.io/github.com/savageboy74/SavageCore/status.png)](https://drone.io/github.com/savageboy74/SavageCore/latest)
 ==========
 
-A core mod for some of my mods.
-
-Status: [![Build Status](https://drone.io/github.com/savageboy74/SavageCore/status.png)](https://drone.io/github.com/savageboy74/SavageCore/latest)  
+A core mod for some of my mods.  
 
 MOD INFO
 ========
