@@ -1,8 +1,8 @@
-package tv.savageboy74.savagecore.common.proxy;
+package tv.savageboy74.savagecore.common.events;
 
 /*
- * CommonProxy.java
- * Copyright (C) 2014 - 2015 Savage - github.com/savageboy74
+ * BlockModelRegisterEvent.java
+ * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,20 @@ package tv.savageboy74.savagecore.common.proxy;
  * THE SOFTWARE.
  */
 
-public class CommonProxy
+import net.minecraft.client.renderer.BlockModelShapes;
+import net.minecraftforge.fml.common.eventhandler.Event;
+
+/**
+ * Called upon the construction of BlockModelShapes after the registration of
+ * Vanilla blocks. This event should be used as an opportunity to register any
+ * custom state mappings for modded blocks.
+ */
+public class BlockModelRegisterEvent extends Event
 {
+    public final BlockModelShapes modelShapes;
+
+    public BlockModelRegisterEvent(BlockModelShapes modelShapes)
+    {
+        this.modelShapes = modelShapes;
+    }
 }

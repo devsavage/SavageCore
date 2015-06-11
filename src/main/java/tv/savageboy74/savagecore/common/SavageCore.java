@@ -23,39 +23,37 @@ package tv.savageboy74.savagecore.common;
  * THE SOFTWARE.
  */
 
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import tv.savageboy74.savagecore.common.config.ConfigHandler;
-import tv.savageboy74.savagecore.common.core.command.CommandHandler;
 import tv.savageboy74.savagecore.common.proxy.CommonProxy;
 import tv.savageboy74.savagecore.common.util.LogHelper;
-import tv.savageboy74.savagecore.common.util.Reference;
+import tv.savageboy74.savagecore.common.util.SavageCoreProps;
 import tv.savageboy74.savagecore.common.util.UpdateChecker;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.io.IOException;
 
-@Mod(modid = Reference.MOD_ID, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
+@Mod(modid = SavageCoreProps.MOD_ID, version = SavageCoreProps.VERSION, guiFactory = SavageCoreProps.GUI_FACTORY_CLASS)
 public class SavageCore
 {
 
-    @Mod.Instance(Reference.MOD_ID)
+    @Mod.Instance(SavageCoreProps.MOD_ID)
     public static SavageCore instance;
 
-    @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
+    @SidedProxy(clientSide = SavageCoreProps.CLIENT_PROXY, serverSide = SavageCoreProps.SERVER_PROXY)
     public static CommonProxy proxy;
 
-    @EventHandler
+    @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         ConfigHandler.init(event.getSuggestedConfigurationFile());
@@ -64,13 +62,13 @@ public class SavageCore
         FMLCommonHandler.instance().bus().register(this);
         MinecraftForge.EVENT_BUS.register(this);
 
-        LogHelper.info("Pre-Initialization Complete.");
+        LogHelper.info(SavageCoreProps.MOD_NAME, "Pre-Initialization Complete.");
 
         if (ConfigHandler.checkForUpdates)
         {
             try
             {
-                LogHelper.info("Checking For Updates...");
+                LogHelper.info(SavageCoreProps.MOD_NAME, "Checking For Updates...");
                 UpdateChecker.checkForUpdates();
             }
 
@@ -81,22 +79,22 @@ public class SavageCore
         }
     }
 
-    @EventHandler
+    @Mod.EventHandler
     public void serverStarting(FMLServerStartingEvent event)
     {
-        CommandHandler.initCommands(event);
+        //CommandHandler.initCommands(event);
     }
     
-    @EventHandler
+    @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        LogHelper.info("Initialization Complete.");
+        LogHelper.info(SavageCoreProps.MOD_NAME, "Initialization Complete.");
     }
 
     @SubscribeEvent
     public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event)
     {
-        if (Reference.OUTDATED)
+        if (SavageCoreProps.OUTDATED)
         {
             EnumChatFormatting darkRed = EnumChatFormatting.DARK_RED;
             EnumChatFormatting aqua = EnumChatFormatting.AQUA;
@@ -104,18 +102,18 @@ public class SavageCore
             EnumChatFormatting reset = EnumChatFormatting.RESET;
             EnumChatFormatting green = EnumChatFormatting.GREEN;
 
-            String name = Reference.MOD_NAME;
+            String name = SavageCoreProps.MOD_NAME;
             String outdatedText = aqua + "[" + name + "] " + reset + "This version of " + green + name + reset + " is" + darkRed + " outdated!";
-            String versionText =  "Current Version: " + darkRed + Reference.VERSION + reset + " Newest Version: " + darkGreen +  Reference.NEWVERSION;
+            String versionText =  "Current Version: " + darkRed + SavageCoreProps.VERSION + reset + " Newest Version: " + darkGreen +  SavageCoreProps.NEWVERSION;
 
             event.player.addChatComponentMessage(new ChatComponentText(outdatedText));
             event.player.addChatComponentMessage(new ChatComponentText(versionText));
         }
     }
 
-    @EventHandler
+    @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        LogHelper.info("Post-Initialization Complete.");
+        LogHelper.info(SavageCoreProps.MOD_NAME, "Post-Initialization Complete.");
     }
 }

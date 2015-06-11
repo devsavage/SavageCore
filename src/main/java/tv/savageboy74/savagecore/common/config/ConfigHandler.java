@@ -23,9 +23,9 @@ package tv.savageboy74.savagecore.common.config;
  * THE SOFTWARE.
  */
 
-import tv.savageboy74.savagecore.common.util.Reference;
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import tv.savageboy74.savagecore.common.util.SavageCoreProps;
 import net.minecraftforge.common.config.Configuration;
 import tv.savageboy74.savagecore.common.util.Strings;
 
@@ -48,7 +48,7 @@ public class ConfigHandler
     @SubscribeEvent
     public void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
     {
-        if (event.modID.equalsIgnoreCase(Reference.MOD_ID))
+        if (event.modID.equalsIgnoreCase(SavageCoreProps.MOD_ID))
         {
             loadConfiguration();
         }

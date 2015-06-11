@@ -17,34 +17,28 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.10-0.3"
+version = "1.8-2.2"
 group= "tv.savageboy74.savagecore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "SavageCore"
 
 minecraft {
-    version = "1.7.10-10.13.2.1230"
+    version = "1.8-11.14.1.1320"
     runDir = "eclipse"
+    mappings = "snapshot_nodoc_20141130"
 }
 
 dependencies {
-
 }
 
 processResources
 {
-    // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
-
-    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        // replace version and mcversion
+        include 'mcmod.info'      
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
         
-    // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
@@ -55,4 +49,9 @@ task sourceJar(type: Jar) {
     classifier = 'source'
 }
 
-build.dependsOn sourceJar
+task devJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'dev'
+}
+
+build.dependsOn sourceJar, devJar

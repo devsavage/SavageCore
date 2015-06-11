@@ -30,4 +30,22 @@ public class Strings
         public static final String CONFIG_UPDATES_NAME = "Check for Updates";
         public static final String CONFIG_UPDATES_DESC = "Allow SavageCore to check for updates.";
     }
+
+    public static final class NBT
+    {
+        public static final String ITEMS = "Items";
+        public static final String UUID_MOST_SIG = "UUIDMostSig";
+        public static final String UUID_LEAST_SIG = "UUIDLeastSig";
+        public static final String OWNER = "Owner";
+        public static final String OWNER_UUID_MOST_SIG = "OwnerUUIDMostSig";
+        public static final String OWNER_UUID_LEAST_SIG = "OwnerUUIDLeastSig";
+        public static final String CUSTOM_NAME = "CustomName";
+        public static final String DIRECTION = "TEDirection";
+        public static final String STATE = "TEState";
+    }
+
+    public static final class Messages
+    {
+        public static final String NO_OWNER = "tooltip.savagecore:none";
+    }
 }

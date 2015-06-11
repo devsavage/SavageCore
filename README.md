@@ -7,8 +7,8 @@ Status: [![Build Status](https://drone.io/github.com/savageboy74/SavageCore/stat
 
 MOD INFO
 ========
-Minecraft Version: 1.7.10  
-Forge Version: 10.13.2.1230+  
+Minecraft Version: 1.8  
+Forge Version: 11.14.0.1299+  
 
 Links
 ======

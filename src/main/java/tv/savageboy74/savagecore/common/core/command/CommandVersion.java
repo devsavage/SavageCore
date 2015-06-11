@@ -25,7 +25,7 @@ package tv.savageboy74.savagecore.common.core.command;
 
 import tv.savageboy74.savagecore.common.core.helper.Font;
 import tv.savageboy74.savagecore.common.core.helper.StringHelper;
-import tv.savageboy74.savagecore.common.util.Reference;
+import tv.savageboy74.savagecore.common.util.SavageCoreProps;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
@@ -45,7 +45,7 @@ public class CommandVersion implements ISubCommand
     @Override
     public void handleCommand(ICommandSender sender, String[] arguments)
     {
-        sender.addChatMessage (new ChatComponentText(Font.Color.AQUA + "[SavageCore] " + Font.Format.RESET +  StringHelper.localize("info.savagecore.command.version.0") + " " + EnumChatFormatting.LIGHT_PURPLE + Reference.VERSION));
+        sender.addChatMessage (new ChatComponentText(Font.Color.AQUA + "[SavageCore] " + Font.Format.RESET +  StringHelper.localize("info.savagecore.command.version.0") + " " + EnumChatFormatting.LIGHT_PURPLE + SavageCoreProps.VERSION));
     }
 
     @Override

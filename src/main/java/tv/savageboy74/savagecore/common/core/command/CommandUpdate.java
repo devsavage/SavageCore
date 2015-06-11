@@ -24,7 +24,7 @@ package tv.savageboy74.savagecore.common.core.command;
  */
 
 import tv.savageboy74.savagecore.common.core.helper.Font;
-import tv.savageboy74.savagecore.common.util.Reference;
+import tv.savageboy74.savagecore.common.util.SavageCoreProps;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.util.ChatComponentText;
@@ -49,7 +49,7 @@ public class CommandUpdate implements ISubCommand
     public void handleCommand(ICommandSender sender, String[] arguments)
     {
 
-        final String messageUpdateURL = Font.Color.AQUA + "[SavageCore] " + Font.Format.RESET +  Font.Color.YELLOW + "Click " + Font.Color.AQUA + Font.Format.ITALIC + Font.Format.UNDERLINE + "here" + Font.Color.YELLOW + " to download a new update for " + "SavageCore. " + Font.Format.RESET +  "Current SavageCore Version: " + EnumChatFormatting.DARK_GREEN + Reference.VERSION + ".";
+        final String messageUpdateURL = Font.Color.AQUA + "[SavageCore] " + Font.Format.RESET +  Font.Color.YELLOW + "Click " + Font.Color.AQUA + Font.Format.ITALIC + Font.Format.UNDERLINE + "here" + Font.Color.YELLOW + " to download a new update for " + "SavageCore. " + Font.Format.RESET +  "Current SavageCore Version: " + EnumChatFormatting.DARK_GREEN + SavageCoreProps.VERSION + ".";
 
         final IChatComponent chatComponentUpdate = new ChatComponentText(messageUpdateURL);
         chatComponentUpdate.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://savageboy74.tv/mods/savagecore/"));
