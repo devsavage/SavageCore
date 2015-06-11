@@ -23,5 +23,5 @@ Links
 This work is licensed under a <a rel="license" href="http://opensource.org/licenses/MIT" target="_blank">MIT License</a>  
 <br>
 <br>
-<a rel="license" href="http://opensource.org/licenses/MIT" target="_blank"> <img src="http://epe.si/sites/default/files/pictures/osi.png"/></a>  
+<a rel="license" href="http://opensource.org/licenses/MIT" target="_blank"> <img src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png"/></a>  
 <br>  
