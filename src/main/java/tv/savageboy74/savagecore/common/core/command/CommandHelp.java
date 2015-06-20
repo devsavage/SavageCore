@@ -23,26 +23,40 @@ package tv.savageboy74.savagecore.common.core.command;
  * THE SOFTWARE.
  */
 
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
+import scala.tools.nsc.backend.icode.ReferenceEquality;
 import tv.savageboy74.savagecore.common.core.helper.StringHelper;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
+import tv.savageboy74.savagecore.common.util.SavageCoreProps;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommandHelp implements ISubCommand
 {
-    //TODO Redo This Class
+    public static CommandHelp instance = new CommandHelp();
 
     @Override
     public String getCommandName() {
-        return null;
+        return "help";
     }
 
     @Override
-    public void handleCommand(ICommandSender sender, String[] arguments) {
+    public void handleCommand(ICommandSender sender, String[] arguments)
+    {
+        sender.addChatMessage(new ChatComponentText("================"));
+        sender.addChatMessage(new ChatComponentText("|" + EnumChatFormatting.AQUA + " SavageCore"  + EnumChatFormatting.GOLD + " Help "+ EnumChatFormatting.RESET + "|"));
+        sender.addChatMessage(new ChatComponentText("================"));
+        sender.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_GREEN + "/" + SavageCoreProps.MOD_ID + EnumChatFormatting.RED + " " + CommandVersion.instance.getCommandName() + ": " + EnumChatFormatting.RESET + "Returns the current version of " + SavageCoreProps.MOD_NAME + " you are using."));
 
+        if(Loader.isModLoaded("savagetech"))
+        {
+            sender.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_GREEN + "/savagecore " + EnumChatFormatting.RED + "stversion" + ": " + EnumChatFormatting.RESET + "Returns the current version of SavageTech you are using and update info."));
+        }
     }
 
     @Override

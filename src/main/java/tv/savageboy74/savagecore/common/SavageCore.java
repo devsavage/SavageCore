@@ -33,6 +33,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import tv.savageboy74.savagecore.common.config.ConfigHandler;
+import tv.savageboy74.savagecore.common.core.command.CommandHandler;
 import tv.savageboy74.savagecore.common.proxy.CommonProxy;
 import tv.savageboy74.savagecore.common.util.LogHelper;
 import tv.savageboy74.savagecore.common.util.SavageCoreProps;
@@ -82,7 +83,7 @@ public class SavageCore
     @Mod.EventHandler
     public void serverStarting(FMLServerStartingEvent event)
     {
-        //CommandHandler.initCommands(event);
+        CommandHandler.initCommands(event);
     }
     
     @Mod.EventHandler

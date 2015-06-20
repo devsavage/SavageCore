@@ -29,6 +29,7 @@ import tv.savageboy74.savagecore.common.core.helper.StringHelper;
 import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -38,7 +39,30 @@ import net.minecraft.command.WrongUsageException;
 
 public class CommandHandler extends CommandBase
 {
+    public static CommandHandler instance = new CommandHandler();
+
     private static TMap<String, ISubCommand> commands = new THashMap<String, ISubCommand>();
+
+    static
+    {
+        registerSubCommand(CommandHelp.instance);
+        registerSubCommand(CommandVersion.instance);
+    }
+
+    public static void initCommands(FMLServerStartingEvent event)
+    {
+        event.registerServerCommand(instance);
+    }
+
+    public static boolean registerSubCommand(ISubCommand command)
+    {
+        if(!commands.containsKey(command.getCommandName())) {
+            commands.put(command.getCommandName(), command);
+            return true;
+        }
+
+        return false;
+    }
 
     @Override
     public String getName() {
@@ -64,5 +88,15 @@ public class CommandHandler extends CommandBase
         }
 
         throw new CommandException("Type '" + getCommandUsage(sender) + "' for help.");
+    }
+
+    @Override
+    public List getAliases()
+    {
+        List altName = new ArrayList();
+
+        altName.add("sc");
+
+        return altName;
     }
 }
