@@ -17,12 +17,12 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.8-2.5"
+version = "1.8-2.6"
 group= "tv.savageboy74.savagecore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "SavageCore"
 
 minecraft {
-    version = "1.8-11.14.1.1419"
+    version = "11.14.3.1450"
     runDir = "eclipse"
     mappings = "snapshot_20141130"
 }
