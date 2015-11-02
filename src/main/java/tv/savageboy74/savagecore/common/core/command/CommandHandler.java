@@ -23,7 +23,7 @@ package tv.savageboy74.savagecore.common.core.command;
  * THE SOFTWARE.
  */
 
-import net.minecraft.command.CommandException;
+import net.minecraft.command.*;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import tv.savageboy74.savagecore.common.core.helper.StringHelper;
 import gnu.trove.map.TMap;
@@ -32,10 +32,6 @@ import gnu.trove.map.hash.THashMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import net.minecraft.command.CommandBase;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.command.WrongUsageException;
 
 public class CommandHandler extends CommandBase
 {
@@ -99,5 +95,17 @@ public class CommandHandler extends CommandBase
         altName.add("sc");
 
         return altName;
+    }
+
+    @Override
+    public int compareTo(ICommand iCommand)
+    {
+        return super.compareTo(iCommand);
+    }
+
+    @Override
+    public int compareTo(Object object)
+    {
+        return super.compareTo(object);
     }
 }
