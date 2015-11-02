@@ -122,4 +122,12 @@ public class LogHelper
     {
         advLog(modName, Level.DEBUG, err, format, data);
     }
+
+    public static void debugModeOnly(boolean debug, String modName, Throwable err, String format, Object... data)
+    {
+        if(debug)
+        {
+            advLog(modName, Level.DEBUG, err, format, data);
+        }
+    }
 }

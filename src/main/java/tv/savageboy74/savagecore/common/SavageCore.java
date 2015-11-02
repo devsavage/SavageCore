@@ -44,7 +44,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.io.IOException;
 
-@Mod(modid = SavageCoreProps.MOD_ID, version = SavageCoreProps.VERSION, guiFactory = SavageCoreProps.GUI_FACTORY_CLASS)
+@Mod(modid = SavageCoreProps.MOD_ID, version = SavageCoreProps.VERSION, guiFactory = SavageCoreProps.GUI_FACTORY_CLASS, dependencies = SavageCoreProps.DEPENDENCIES)
 public class SavageCore
 {
 

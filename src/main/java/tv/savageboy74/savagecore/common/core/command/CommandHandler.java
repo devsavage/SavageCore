@@ -65,18 +65,19 @@ public class CommandHandler extends CommandBase
     }
 
     @Override
-    public String getName() {
+    public String getCommandName()
+    {
         return "savagecore";
     }
 
     @Override
     public String getCommandUsage(ICommandSender sender)
     {
-        return "/" + getName() + " help";
+        return "/" + getCommandName() + " help";
     }
 
     @Override
-    public void execute(ICommandSender sender, String[] args) throws CommandException
+    public void processCommand(ICommandSender sender, String[] args) throws CommandException
     {
         if (args.length <= 0) {
             throw new CommandException("Type '" + getCommandUsage(sender) + "' for help.");
@@ -91,7 +92,7 @@ public class CommandHandler extends CommandBase
     }
 
     @Override
-    public List getAliases()
+    public List getCommandAliases()
     {
         List altName = new ArrayList();
 

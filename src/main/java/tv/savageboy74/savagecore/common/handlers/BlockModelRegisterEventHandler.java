@@ -46,7 +46,7 @@ public class BlockModelRegisterEventHandler
 
         for (Map.Entry<Block, Set<IProperty>> entry : hiddenProperties.entrySet())
         {
-            modelShapes.registerBlockWithStateMapper(entry.getKey(), (new StateMap.Builder()).addPropertiesToIgnore(entry.getValue().toArray(new IProperty[] {})).build());
+            modelShapes.registerBlockWithStateMapper(entry.getKey(), (new StateMap.Builder()).ignore(entry.getValue().toArray(new IProperty[] {})).build());
         }
     }
 

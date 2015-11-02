@@ -1,34 +1,29 @@
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
         maven {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
         }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.0-SNAPSHOT'
     }
 }
 
-apply plugin: 'forge'
+apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.8-2.6"
+version = "1.8-3.0.1"
 group= "tv.savageboy74.savagecore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "SavageCore"
 
 minecraft {
-    version = "11.14.3.1450"
-    runDir = "eclipse"
-    mappings = "snapshot_20141130"
+    version = "1.8-11.14.3.1543"
+    runDir = "run"
+    mappings = "snapshot_20150823"
 }
 
-dependencies {
-}
+dependencies {}
 
 processResources
 {
@@ -43,15 +38,15 @@ processResources
         exclude 'mcmod.info'
     }
 }
-
-task sourceJar(type: Jar) {
+/*
+task buildSourceJar(type: Jar) {
     from sourceSets.main.allSource
-    classifier = 'source'
+    classifier = 'src'
 }
-
-task devJar(type: Jar) {
+*/
+task buildDevJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'dev'
 }
 
-build.dependsOn sourceJar, devJar
+build.dependsOn buildDevJar
