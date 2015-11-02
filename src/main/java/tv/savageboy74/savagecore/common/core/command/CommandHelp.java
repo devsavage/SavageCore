@@ -61,6 +61,10 @@ public class CommandHelp implements ISubCommand
 
     @Override
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args) {
+        if (args.length == 2) {
+            return CommandBase.getListOfStringsMatchingLastWord(args, CommandHandler.getCommandList());
+        }
+
         return null;
     }
 }

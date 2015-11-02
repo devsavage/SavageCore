@@ -7,7 +7,7 @@ public class SavageCoreProps
 
     public static final String MOD_ID = "savagecore";
     public static final String MOD_NAME = "SavageCore";
-    public static final String VERSION = "1.8-3.0.2";
+    public static final String VERSION = "1.8-3.0.3";
 
     public static final String CLIENT_PROXY = "tv.savageboy74.savagecore.client.proxy.ClientProxy";
     public static final String SERVER_PROXY = "tv.savageboy74.savagecore.common.proxy.CommonProxy";
@@ -16,7 +16,7 @@ public class SavageCoreProps
 
     public static final String DEPENDENCIES = "required-after:Forge@[11.14.3.1521,)";
 
-    public static final int UPDATE_NUMBER = 21;
+    public static final int UPDATE_NUMBER = 22;
     public static String UPDATES = "";
     public static boolean OUTDATED = false;
 

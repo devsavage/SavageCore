@@ -13,7 +13,7 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.8-3.0.2"
+version = "1.8-3.0.3"
 group= "tv.savageboy74.savagecore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "SavageCore"
 

@@ -34,5 +34,5 @@ public interface ISubCommand
 
     public void handleCommand(ICommandSender sender, String[] arguments);
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args);
+    public List addTabCompletionOptions(ICommandSender sender, String[] args);
 }

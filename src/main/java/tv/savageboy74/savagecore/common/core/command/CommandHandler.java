@@ -24,6 +24,7 @@ package tv.savageboy74.savagecore.common.core.command;
  */
 
 import net.minecraft.command.*;
+import net.minecraft.util.BlockPos;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import tv.savageboy74.savagecore.common.core.helper.StringHelper;
 import gnu.trove.map.TMap;
@@ -72,6 +73,11 @@ public class CommandHandler extends CommandBase
         return "/" + getCommandName() + " help";
     }
 
+    public static Set<String> getCommandList() {
+
+        return commands.keySet();
+    }
+
     @Override
     public void processCommand(ICommandSender sender, String[] args) throws CommandException
     {
@@ -88,6 +94,18 @@ public class CommandHandler extends CommandBase
     }
 
     @Override
+    public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    {
+        if (args.length == 1) {
+            return getListOfStringsMatchingLastWord(args, commands.keySet());
+        } else if (commands.containsKey(args[0])) {
+            return commands.get(args[0]).addTabCompletionOptions(sender, args);
+        }
+
+        return null;
+    }
+
+    @Override
     public List getCommandAliases()
     {
         List altName = new ArrayList();
@@ -95,17 +113,5 @@ public class CommandHandler extends CommandBase
         altName.add("sc");
 
         return altName;
-    }
-
-    @Override
-    public int compareTo(ICommand iCommand)
-    {
-        return super.compareTo(iCommand);
-    }
-
-    @Override
-    public int compareTo(Object object)
-    {
-        return super.compareTo(object);
     }
 }
