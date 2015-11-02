@@ -2,6 +2,7 @@ SavageCore [![Build Status](https://drone.io/github.com/savageboy74/SavageCore/s
 ==========
 
 A core mod for some of my mods.  
+**The current builds are successful. drone.io is not compiling SavageCore correctly :(  
 
 MOD INFO
 ========
