@@ -58,9 +58,7 @@ public class SavageCore
     public void preInit(FMLPreInitializationEvent event)
     {
         ConfigHandler.init(event.getSuggestedConfigurationFile());
-        FMLCommonHandler.instance().bus().register(new ConfigHandler());
-
-        FMLCommonHandler.instance().bus().register(this);
+        MinecraftForge.EVENT_BUS.register(new ConfigHandler());
         MinecraftForge.EVENT_BUS.register(this);
 
         LogHelper.info(SavageCoreProps.MOD_NAME, "Pre-Initialization Complete.");
