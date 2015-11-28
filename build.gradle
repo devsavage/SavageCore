@@ -11,16 +11,28 @@ buildscript {
     }
 }
 
+apply plugin: 'java'
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.8-3.0.3"
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+version = "${config.minecraft_version}-${config.mod_version}"
 group= "tv.savageboy74.savagecore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "SavageCore"
 
 minecraft {
-    version = "1.8-11.14.3.1543"
+    version = "${config.minecraft_version}-${config.forge_version}"
     runDir = "run"
     mappings = "snapshot_20150823"
+
+    replaceIn "common/util/SavageCoreProps.java"
+    replace "@MOD_VERSION@", "${config.minecraft_version}-${config.mod_version}"
 }
 
 dependencies {}
@@ -38,12 +50,6 @@ processResources
         exclude 'mcmod.info'
     }
 }
-/*
-task buildSourceJar(type: Jar) {
-    from sourceSets.main.allSource
-    classifier = 'src'
-}
-*/
 task buildDevJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'dev'
