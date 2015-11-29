@@ -23,6 +23,10 @@ package tv.savageboy74.savagecore.common.proxy;
  * THE SOFTWARE.
  */
 
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
 public class CommonProxy
 {
 }

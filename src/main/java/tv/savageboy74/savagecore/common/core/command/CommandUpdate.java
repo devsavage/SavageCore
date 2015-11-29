@@ -23,6 +23,7 @@ package tv.savageboy74.savagecore.common.core.command;
  * THE SOFTWARE.
  */
 
+import tv.savageboy74.savagecore.common.SavageCore;
 import tv.savageboy74.savagecore.common.core.helper.Font;
 import tv.savageboy74.savagecore.common.util.SavageCoreProps;
 import net.minecraft.command.ICommandSender;
@@ -37,8 +38,6 @@ public class CommandUpdate implements ISubCommand
 {
     public static CommandUpdate instance = new CommandUpdate();
 
-
-
     @Override
     public String getCommandName()
     {
@@ -48,13 +47,17 @@ public class CommandUpdate implements ISubCommand
     @Override
     public void handleCommand(ICommandSender sender, String[] arguments)
     {
-
-        final String messageUpdateURL = Font.Color.AQUA + "[SavageCore] " + Font.Format.RESET +  Font.Color.YELLOW + "Click " + Font.Color.AQUA + Font.Format.ITALIC + Font.Format.UNDERLINE + "here" + Font.Color.YELLOW + " to download a new update for " + "SavageCore. " + Font.Format.RESET +  "Current SavageCore Version: " + EnumChatFormatting.DARK_GREEN + SavageCoreProps.VERSION + ".";
-
-        final IChatComponent chatComponentUpdate = new ChatComponentText(messageUpdateURL);
-        chatComponentUpdate.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://savageboy74.tv/mods/savagecore/"));
-        chatComponentUpdate.getChatStyle().setUnderlined(false);
-        sender.addChatMessage(chatComponentUpdate);
+        if (SavageCoreProps.OUTDATED) {
+            final String message = Font.Color.AQUA + " [" + SavageCoreProps.MOD_NAME + "] " + Font.Color.GOLD + "Click " + Font.Color.AQUA + Font.Format.UNDERLINE + "here" + Font.Color.GOLD + " here to get the newest version." + " \n" + "Current Version: " + Font.Color.DARKGREEN + SavageCoreProps.CURRENTVERSION + Font.Format.RESET + " Newest Version: " + Font.Color.DARKGREEN + SavageCoreProps.NEWVERSION;
+            final IChatComponent updateComponent = new ChatComponentText(message);
+            updateComponent.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://savageboy74.tv/mods/savagecore"));
+            updateComponent.getChatStyle().setUnderlined(false);
+            sender.addChatMessage(updateComponent);
+        } else {
+            final String message = Font.Color.AQUA + " [" + SavageCoreProps.MOD_NAME + "] " + Font.Format.RESET +  "You have the most up to date version of SavageCore!";
+            final IChatComponent updateComponent = new ChatComponentText(message);
+            sender.addChatMessage(updateComponent);
+        }
     }
 
     @Override

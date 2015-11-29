@@ -36,6 +36,7 @@ import tv.savageboy74.savagecore.common.config.ConfigHandler;
 import tv.savageboy74.savagecore.common.core.command.CommandHandler;
 import tv.savageboy74.savagecore.common.proxy.CommonProxy;
 import tv.savageboy74.savagecore.common.util.LogHelper;
+import tv.savageboy74.savagecore.common.util.MiscUtils;
 import tv.savageboy74.savagecore.common.util.SavageCoreProps;
 import tv.savageboy74.savagecore.common.util.UpdateChecker;
 import net.minecraft.util.ChatComponentText;
