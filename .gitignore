@@ -17,3 +17,11 @@
 /eclipse
 /out
 /run
+/bin/
+
+
+# Other #
+/.classpath
+/.project
+/.settings/
+*.launch
