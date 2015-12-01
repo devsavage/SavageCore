@@ -16,7 +16,7 @@ public class SavageCoreProps
 
     public static final String DEPENDENCIES = "required-after:Forge@[11.14.3.1521,)";
 
-    public static final int UPDATE_NUMBER = 24;
+    public static final int UPDATE_NUMBER = 25;
     public static String UPDATES = "";
     public static boolean OUTDATED = false;
 
