@@ -23,12 +23,19 @@ package tv.savageboy74.savagecore.common.util;
  * THE SOFTWARE.
  */
 
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
 
 import java.util.Comparator;
+import java.util.Random;
 import java.util.UUID;
 
 //TODO Check NBT
@@ -205,4 +212,6 @@ public class ItemHelper
         NBTHelper.setLong(itemStack, Strings.NBT.OWNER_UUID_MOST_SIG, entityPlayer.getUniqueID().getMostSignificantBits());
         NBTHelper.setLong(itemStack, Strings.NBT.OWNER_UUID_LEAST_SIG, entityPlayer.getUniqueID().getLeastSignificantBits());
     }
+
+
 }

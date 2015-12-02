@@ -25,6 +25,7 @@ package tv.savageboy74.savagecore.common.core.command;
 
 import tv.savageboy74.savagecore.common.SavageCore;
 import tv.savageboy74.savagecore.common.core.helper.Font;
+import tv.savageboy74.savagecore.common.core.helper.StringHelper;
 import tv.savageboy74.savagecore.common.util.SavageCoreProps;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.event.ClickEvent;
@@ -54,9 +55,7 @@ public class CommandUpdate implements ISubCommand
             updateComponent.getChatStyle().setUnderlined(false);
             sender.addChatMessage(updateComponent);
         } else {
-            final String message = Font.Color.AQUA + " [" + SavageCoreProps.MOD_NAME + "] " + Font.Format.RESET +  "You have the most up to date version of SavageCore!";
-            final IChatComponent updateComponent = new ChatComponentText(message);
-            sender.addChatMessage(updateComponent);
+            sender.addChatMessage (new ChatComponentText(Font.Color.AQUA + "[SavageCore] " + Font.Format.RESET +  StringHelper.localize("info.savagecore.command.version.1")));
         }
     }
 
