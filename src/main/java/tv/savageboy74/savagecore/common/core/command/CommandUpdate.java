@@ -48,7 +48,7 @@ public class CommandUpdate implements ISubCommand
     public void handleCommand(ICommandSender sender, String[] arguments)
     {
         if (SavageCoreProps.OUTDATED) {
-            final String message = Font.Color.AQUA + " [" + SavageCoreProps.MOD_NAME + "] " + Font.Color.GOLD + "Click " + Font.Color.AQUA + Font.Format.UNDERLINE + "here" + Font.Color.GOLD + " here to get the newest version." + " \n" + "Current Version: " + Font.Color.DARKGREEN + SavageCoreProps.CURRENTVERSION + Font.Format.RESET + " Newest Version: " + Font.Color.DARKGREEN + SavageCoreProps.NEWVERSION;
+            final String message = Font.Color.AQUA + " [" + SavageCoreProps.MOD_NAME + "] " + Font.Color.RED + "This version is outdated! \n" + Font.Color.GOLD + "Click " + Font.Color.AQUA + Font.Format.UNDERLINE + "here" + Font.Color.GOLD + " here to get the newest version." + " \n" + "Current Version: " + Font.Color.RED + SavageCoreProps.CURRENTVERSION + Font.Format.RESET + " Newest Version: " + Font.Color.GREEN + SavageCoreProps.NEWVERSION;
             final IChatComponent updateComponent = new ChatComponentText(message);
             updateComponent.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://savageboy74.tv/mods/savagecore"));
             updateComponent.getChatStyle().setUnderlined(false);
