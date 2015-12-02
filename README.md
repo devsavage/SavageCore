@@ -2,12 +2,11 @@ SavageCore [![Build Status](https://drone.io/github.com/savageboy74/SavageCore/s
 ==========
 
 A core mod for some of my mods.  
-**The current builds are successful. drone.io is not compiling SavageCore correctly :(  
 
 MOD INFO
 ========
-Minecraft Version: 1.8  
-Forge Version: 11.14.3.1450+  
+Minecraft Version: 1.8.8  
+Forge Version: 11.15.0.1607+  
 
 Links
 ======

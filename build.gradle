@@ -29,7 +29,7 @@ archivesBaseName = "SavageCore"
 minecraft {
     version = "${config.minecraft_version}-${config.forge_version}"
     runDir = "run"
-    mappings = "snapshot_20151130"
+    mappings = "snapshot_20151201"
 
     replaceIn "common/util/SavageCoreProps.java"
     replace "@MOD_VERSION@", "${config.minecraft_version}-${config.mod_version}"
