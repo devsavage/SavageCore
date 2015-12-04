@@ -50,9 +50,15 @@ processResources
         exclude 'mcmod.info'
     }
 }
-task buildDevJar(type: Jar) {
+
+task devJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'dev'
 }
 
-build.dependsOn buildDevJar
+task srcJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'src'
+}
+
+build.dependsOn srcJar, devJar
