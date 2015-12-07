@@ -92,20 +92,23 @@ public class SavageCore
     @SubscribeEvent
     public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event)
     {
-        if (SavageCoreProps.OUTDATED)
+        if(ConfigHandler.checkForUpdates)
         {
-            EnumChatFormatting darkRed = EnumChatFormatting.DARK_RED;
-            EnumChatFormatting aqua = EnumChatFormatting.AQUA;
-            EnumChatFormatting darkGreen = EnumChatFormatting.DARK_GREEN;
-            EnumChatFormatting reset = EnumChatFormatting.RESET;
-            EnumChatFormatting green = EnumChatFormatting.GREEN;
+            if (SavageCoreProps.OUTDATED)
+            {
+                EnumChatFormatting darkRed = EnumChatFormatting.DARK_RED;
+                EnumChatFormatting aqua = EnumChatFormatting.AQUA;
+                EnumChatFormatting darkGreen = EnumChatFormatting.DARK_GREEN;
+                EnumChatFormatting reset = EnumChatFormatting.RESET;
+                EnumChatFormatting green = EnumChatFormatting.GREEN;
 
-            String name = SavageCoreProps.MOD_NAME;
-            String outdatedText = aqua + "[" + name + "] " + reset + "This version of " + green + name + reset + " is" + darkRed + " outdated!";
-            String versionText =  "Current Version: " + darkRed + SavageCoreProps.VERSION + reset + " Newest Version: " + darkGreen +  SavageCoreProps.NEWVERSION;
+                String name = SavageCoreProps.MOD_NAME;
+                String outdatedText = aqua + "[" + name + "] " + reset + "This version of " + green + name + reset + " is" + darkRed + " outdated!";
+                String versionText =  "Current Version: " + darkRed + SavageCoreProps.VERSION + reset + " Newest Version: " + darkGreen +  SavageCoreProps.NEWVERSION;
 
-            event.player.addChatComponentMessage(new ChatComponentText(outdatedText));
-            event.player.addChatComponentMessage(new ChatComponentText(versionText));
+                event.player.addChatComponentMessage(new ChatComponentText(outdatedText));
+                event.player.addChatComponentMessage(new ChatComponentText(versionText));
+            }
         }
     }
 
