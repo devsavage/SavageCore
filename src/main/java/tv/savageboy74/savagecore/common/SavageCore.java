@@ -43,7 +43,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.io.IOException;
 
-@Mod(modid = SavageCoreProps.MOD_ID, version = SavageCoreProps.VERSION, guiFactory = SavageCoreProps.GUI_FACTORY_CLASS, dependencies = SavageCoreProps.DEPENDENCIES, acceptedMinecraftVersions = SavageCoreProps.MC_VERSION)
+@Mod(modid = SavageCoreProps.MOD_ID, version = SavageCoreProps.VERSION, guiFactory = SavageCoreProps.GUI_FACTORY_CLASS, dependencies = SavageCoreProps.DEPENDENCIES)
 public class SavageCore
 {
 
@@ -54,48 +54,44 @@ public class SavageCore
     public static CommonProxy proxy;
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event)
-    {
+    public void preInit(FMLPreInitializationEvent event) {
         ConfigHandler.init(event.getSuggestedConfigurationFile());
         MinecraftForge.EVENT_BUS.register(new ConfigHandler());
         MinecraftForge.EVENT_BUS.register(this);
 
-        LogHelper.info(SavageCoreProps.MOD_NAME, "Pre-Initialization Complete.");
-
-        if (ConfigHandler.checkForUpdates)
-        {
-            try
-            {
+        if (ConfigHandler.checkForUpdates) {
+            try {
                 LogHelper.info(SavageCoreProps.MOD_NAME, "Checking For Updates...");
                 UpdateChecker.checkForUpdates();
-            }
-
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+        LogHelper.info(SavageCoreProps.MOD_NAME, "Pre-Initialization Complete.");
     }
 
     @Mod.EventHandler
-    public void serverStarting(FMLServerStartingEvent event)
-    {
-        CommandHandler.initCommands(event);
-    }
-    
-    @Mod.EventHandler
-    public void init(FMLInitializationEvent event)
-    {
+    public void init(FMLInitializationEvent event) {
         LogHelper.info(SavageCoreProps.MOD_NAME, "Initialization Complete.");
     }
 
+
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        LogHelper.info(SavageCoreProps.MOD_NAME, "Post-Initialization Complete.");
+    }
+
+
+    @Mod.EventHandler
+    public void serverStarting(FMLServerStartingEvent event) {
+        CommandHandler.initCommands(event);
+    }
+
     @SubscribeEvent
-    public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event)
-    {
-        if(ConfigHandler.checkForUpdates)
-        {
-            if (SavageCoreProps.OUTDATED)
-            {
+    public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event) {
+        if(ConfigHandler.checkForUpdates) {
+            if (SavageCoreProps.OUTDATED) {
                 EnumChatFormatting darkRed = EnumChatFormatting.DARK_RED;
                 EnumChatFormatting aqua = EnumChatFormatting.AQUA;
                 EnumChatFormatting darkGreen = EnumChatFormatting.DARK_GREEN;
@@ -110,11 +106,5 @@ public class SavageCore
                 event.player.addChatComponentMessage(new ChatComponentText(versionText));
             }
         }
-    }
-
-    @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event)
-    {
-        LogHelper.info(SavageCoreProps.MOD_NAME, "Post-Initialization Complete.");
     }
 }

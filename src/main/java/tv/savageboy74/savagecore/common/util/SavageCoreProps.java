@@ -3,7 +3,7 @@ package tv.savageboy74.savagecore.common.util;
 
 public class SavageCoreProps
 {
-    public static final String MC_VERSION = "[1.8,1.8.8]";
+    public static final String MC_VERSION = "[1.8,1.8.8,1.8.9]";
 
     public static final String MOD_ID = "savagecore";
     public static final String MOD_NAME = "SavageCore";
@@ -16,7 +16,7 @@ public class SavageCoreProps
 
     public static final String DEPENDENCIES = "required-after:Forge@[11.14.3.1521,)";
 
-    public static final int UPDATE_NUMBER = Integer.getInteger("@UPDATE_NUMBER@");
+    public static final int UPDATE_NUMBER = Integer.parseInt("@UPDATE_NUMBER@");
     public static String UPDATES = "";
     public static boolean OUTDATED = false;
 
