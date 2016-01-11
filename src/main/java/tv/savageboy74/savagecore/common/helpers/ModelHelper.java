@@ -28,7 +28,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -36,7 +35,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModelHelper
 {
     public static void registerItem(Item item, int metadata, String itemName) {
-        ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(itemName, "inventory"));
+        ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
+        mesher.register(item, metadata, new ModelResourceLocation(itemName, "inventory"));
     }
 
     public static void registerBlock(Block block, int metadata, String blockName) {
