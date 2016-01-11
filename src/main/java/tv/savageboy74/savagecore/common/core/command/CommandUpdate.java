@@ -40,14 +40,12 @@ public class CommandUpdate implements ISubCommand
     public static CommandUpdate instance = new CommandUpdate();
 
     @Override
-    public String getCommandName()
-    {
+    public String getCommandName() {
         return "update";
     }
 
     @Override
-    public void handleCommand(ICommandSender sender, String[] arguments)
-    {
+    public void handleCommand(ICommandSender sender, String[] arguments) {
         if (SavageCoreProps.OUTDATED) {
             final String message = Font.Color.AQUA + " [" + SavageCoreProps.MOD_NAME + "] " + Font.Color.RED + "This version is outdated! \n" + Font.Color.GOLD + "Click " + Font.Color.AQUA + Font.Format.UNDERLINE + "here" + Font.Color.GOLD + " here to get the newest version." + " \n" + "Current Version: " + Font.Color.RED + SavageCoreProps.CURRENTVERSION + Font.Format.RESET + " Newest Version: " + Font.Color.GREEN + SavageCoreProps.NEWVERSION;
             final IChatComponent updateComponent = new ChatComponentText(message);
@@ -55,13 +53,12 @@ public class CommandUpdate implements ISubCommand
             updateComponent.getChatStyle().setUnderlined(false);
             sender.addChatMessage(updateComponent);
         } else {
-            sender.addChatMessage (new ChatComponentText(Font.Color.AQUA + "[SavageCore] " + Font.Format.RESET +  StringHelper.localize("info.savagecore.command.version.1")));
+            sender.addChatMessage(new ChatComponentText(Font.Color.AQUA + "[SavageCore] " + Font.Format.RESET + StringHelper.localize("info.savagecore.command.version.1")));
         }
     }
 
     @Override
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args)
-    {
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args) {
         return null;
     }
 }

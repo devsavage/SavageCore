@@ -7,27 +7,23 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class UpdateChecker {
+public class UpdateChecker
+{
 
-    public static void checkForUpdates() throws IOException
-    {
+    public static void checkForUpdates() throws IOException {
         int currentVersion = SavageCoreProps.UPDATE_NUMBER;
         int nextVersion = getNewest();
 
-        if (currentVersion < nextVersion)
-        {
+        if (currentVersion < nextVersion) {
             SavageCoreProps.NEWVERSION = updatedVersion(nextVersion);
             SavageCoreProps.OUTDATED = true;
-        }
-        else
-        {
+        } else {
             SavageCoreProps.OUTDATED = false;
         }
     }
 
     //Update Number, Each Update Requires A New Number.
-    public static int getNewest() throws IOException
-    {
+    public static int getNewest() throws IOException {
         URL url = new URL("https://raw.githubusercontent.com/savageboy74/SavageCore/master/UpdateNumber.txt");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
@@ -44,8 +40,7 @@ public class UpdateChecker {
         String line;
         StringBuffer response = new StringBuffer();
 
-        while ((line = br.readLine()) != null)
-        {
+        while ((line = br.readLine()) != null) {
             response.append(line);
 
         }
@@ -55,8 +50,7 @@ public class UpdateChecker {
     }
 
     //This is the newest version. Keep Updated With The Current Version
-    private static String updatedVersion(int version) throws IOException
-    {
+    private static String updatedVersion(int version) throws IOException {
         URL url = new URL("https://raw.githubusercontent.com/savageboy74/SavageCore/master/NewestVersion.txt");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
@@ -73,8 +67,7 @@ public class UpdateChecker {
         String line;
         StringBuffer response = new StringBuffer();
 
-        while ((line = br.readLine()) != null)
-        {
+        while ((line = br.readLine()) != null) {
             response.append(line);
 
         }

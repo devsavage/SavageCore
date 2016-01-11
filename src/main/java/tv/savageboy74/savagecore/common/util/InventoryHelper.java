@@ -33,41 +33,36 @@ import net.minecraft.world.World;
 
 public class InventoryHelper
 {
-    public static void dropInventory(World worldIn, BlockPos pos)
-    {
+    public static void dropInventory(World worldIn, BlockPos pos) {
         TileEntity tileEntity = worldIn.getTileEntity(pos);
 
-        if(!(tileEntity instanceof IInventory))
-        {
+        if (!(tileEntity instanceof IInventory)) {
             return;
         }
 
         IInventory inventory = (IInventory) tileEntity;
 
-        for(int i = 0; i < inventory.getSizeInventory(); i++)
-        {
+        for (int i = 0; i < inventory.getSizeInventory(); i++) {
             ItemStack itemstack = inventory.getStackInSlot(i);
 
-            if(itemstack != null) {
+            if (itemstack != null) {
                 float f = worldIn.rand.nextFloat() * 0.8F + 0.1F;
                 float f1 = worldIn.rand.nextFloat() * 0.8F + 0.1F;
                 float f2 = worldIn.rand.nextFloat() * 0.8F + 0.1F;
 
-                while(itemstack.stackSize > 0)
-                {
+                while (itemstack.stackSize > 0) {
                     int j = worldIn.rand.nextInt(21) + 10;
 
-                    if(j > itemstack.stackSize) {
+                    if (j > itemstack.stackSize) {
                         j = itemstack.stackSize;
                     }
 
                     itemstack.stackSize -= j;
 
-                    EntityItem item = new EntityItem(worldIn, (double)((float)pos.getX() + f), (double)((float)pos.getY() + f1), (double)((float)pos.getZ() + f2), new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
+                    EntityItem item = new EntityItem(worldIn, (double) ((float) pos.getX() + f), (double) ((float) pos.getY() + f1), (double) ((float) pos.getZ() + f2), new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
 
-                    if(itemstack.hasTagCompound())
-                    {
-                        item.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+                    if (itemstack.hasTagCompound()) {
+                        item.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                     }
 
                     worldIn.spawnEntityInWorld(item);

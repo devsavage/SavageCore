@@ -35,8 +35,7 @@ public class BlockModelRegisterEvent extends Event
 {
     public final BlockModelShapes modelShapes;
 
-    public BlockModelRegisterEvent(BlockModelShapes modelShapes)
-    {
+    public BlockModelRegisterEvent(BlockModelShapes modelShapes) {
         this.modelShapes = modelShapes;
     }
 }

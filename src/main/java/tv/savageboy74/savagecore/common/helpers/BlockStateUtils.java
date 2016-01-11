@@ -35,10 +35,8 @@ import java.util.Set;
 
 public class BlockStateUtils
 {
-    public static IProperty getPropertyByName(IBlockState blockState, String propertyName)
-    {
-        for (IProperty property : (ImmutableSet<IProperty>) blockState.getProperties().keySet())
-        {
+    public static IProperty getPropertyByName(IBlockState blockState, String propertyName) {
+        for (IProperty property : (ImmutableSet<IProperty>) blockState.getProperties().keySet()) {
             if (property.getName().equals(propertyName))
                 return property;
         }
@@ -46,15 +44,12 @@ public class BlockStateUtils
         return null;
     }
 
-    public static boolean isValidPropertyName(IBlockState blockState, String propertyName)
-    {
+    public static boolean isValidPropertyName(IBlockState blockState, String propertyName) {
         return getPropertyByName(blockState, propertyName) != null;
     }
 
-    public static Comparable getPropertyValueByName(IBlockState blockState, IProperty property, String valueName)
-    {
-        for (Comparable value : (ImmutableSet<Comparable>) property.getAllowedValues())
-        {
+    public static Comparable getPropertyValueByName(IBlockState blockState, IProperty property, String valueName) {
+        for (Comparable value : (ImmutableSet<Comparable>) property.getAllowedValues()) {
             if (value.toString().equals(valueName))
                 return value;
         }
@@ -62,28 +57,24 @@ public class BlockStateUtils
         return null;
     }
 
-    public static ImmutableSet<IBlockState> getValidStatesForProperties(IBlockState baseState, IProperty... properties)
-    {
+    public static ImmutableSet<IBlockState> getValidStatesForProperties(IBlockState baseState, IProperty... properties) {
         if (properties == null)
             return null;
 
         Set<IBlockState> validStates = Sets.newHashSet();
         PropertyIndexer propertyIndexer = new PropertyIndexer(properties);
 
-        do
-        {
+        do {
             IBlockState currentState = baseState;
 
-            for (IProperty property : properties)
-            {
+            for (IProperty property : properties) {
                 IndexedProperty indexedProperty = propertyIndexer.getIndexedProperty(property);
 
                 currentState = currentState.withProperty(property, indexedProperty.getCurrentValue());
             }
 
             validStates.add(currentState);
-        }
-        while (propertyIndexer.increment());
+        } while (propertyIndexer.increment());
 
         return ImmutableSet.copyOf(validStates);
     }
@@ -94,18 +85,15 @@ public class BlockStateUtils
 
         private IProperty finalProperty;
 
-        private PropertyIndexer(IProperty... properties)
-        {
+        private PropertyIndexer(IProperty... properties) {
             finalProperty = properties[properties.length - 1];
 
             IndexedProperty previousIndexedProperty = null;
 
-            for (IProperty property : properties)
-            {
+            for (IProperty property : properties) {
                 IndexedProperty indexedProperty = new IndexedProperty(property);
 
-                if (previousIndexedProperty != null)
-                {
+                if (previousIndexedProperty != null) {
                     indexedProperty.parent = previousIndexedProperty;
                     previousIndexedProperty.child = indexedProperty;
                 }
@@ -115,13 +103,11 @@ public class BlockStateUtils
             }
         }
 
-        public boolean increment()
-        {
+        public boolean increment() {
             return indexedProperties.get(finalProperty).increment();
         }
 
-        public IndexedProperty getIndexedProperty(IProperty property)
-        {
+        public IndexedProperty getIndexedProperty(IProperty property) {
             return indexedProperties.get(property);
         }
     }
@@ -136,59 +122,48 @@ public class BlockStateUtils
         private IndexedProperty parent;
         private IndexedProperty child;
 
-        private IndexedProperty(IProperty property)
-        {
+        private IndexedProperty(IProperty property) {
             this.validValues.addAll(property.getAllowedValues());
             this.maxCount = this.validValues.size() - 1;
         }
 
-        public boolean increment()
-        {
+        public boolean increment() {
             if (counter < maxCount)
                 counter++;
-            else
-            {
-                if (hasParent())
-                {
+            else {
+                if (hasParent()) {
                     resetSelfAndChildren();
                     return this.parent.increment();
-                }
-                else
+                } else
                     return false;
             }
 
             return true;
         }
 
-        public void resetSelfAndChildren()
-        {
+        public void resetSelfAndChildren() {
             counter = 0;
             if (this.hasChild())
                 this.child.resetSelfAndChildren();
         }
 
-        public boolean hasParent()
-        {
+        public boolean hasParent() {
             return parent != null;
         }
 
-        public boolean hasChild()
-        {
+        public boolean hasChild() {
             return child != null;
         }
 
-        public int getCounter()
-        {
+        public int getCounter() {
             return counter;
         }
 
-        public int getMaxCount()
-        {
+        public int getMaxCount() {
             return maxCount;
         }
 
-        public Comparable getCurrentValue()
-        {
+        public Comparable getCurrentValue() {
             return validValues.get(counter);
         }
     }

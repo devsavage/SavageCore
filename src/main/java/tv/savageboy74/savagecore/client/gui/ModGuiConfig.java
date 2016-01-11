@@ -32,13 +32,12 @@ import net.minecraftforge.common.config.Configuration;
 
 public class ModGuiConfig extends GuiConfig
 {
-    public ModGuiConfig(GuiScreen guiScreen)
-    {
+    public ModGuiConfig(GuiScreen guiScreen) {
         super(guiScreen,
-                new ConfigElement(ConfigHandler.configuration.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
-                SavageCoreProps.MOD_ID,
-                false,
-                false,
-                GuiConfig.getAbridgedConfigPath(ConfigHandler.configuration.toString()));
+            new ConfigElement(ConfigHandler.configuration.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
+            SavageCoreProps.MOD_ID,
+            false,
+            false,
+            GuiConfig.getAbridgedConfigPath(ConfigHandler.configuration.toString()));
     }
 }

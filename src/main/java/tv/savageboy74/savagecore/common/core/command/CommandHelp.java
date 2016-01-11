@@ -46,15 +46,13 @@ public class CommandHelp implements ISubCommand
     }
 
     @Override
-    public void handleCommand(ICommandSender sender, String[] arguments)
-    {
+    public void handleCommand(ICommandSender sender, String[] arguments) {
         sender.addChatMessage(new ChatComponentText("================"));
-        sender.addChatMessage(new ChatComponentText("|" + EnumChatFormatting.AQUA + " SavageCore"  + EnumChatFormatting.GOLD + " Help "+ EnumChatFormatting.RESET + "|"));
+        sender.addChatMessage(new ChatComponentText("|" + EnumChatFormatting.AQUA + " SavageCore" + EnumChatFormatting.GOLD + " Help " + EnumChatFormatting.RESET + "|"));
         sender.addChatMessage(new ChatComponentText("================"));
         sender.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_GREEN + "/" + SavageCoreProps.MOD_ID + EnumChatFormatting.RED + " " + CommandVersion.instance.getCommandName() + ": " + EnumChatFormatting.RESET + "Returns the current version of " + SavageCoreProps.MOD_NAME + " you are using."));
 
-        if(Loader.isModLoaded("savagetech"))
-        {
+        if (Loader.isModLoaded("savagetech")) {
             sender.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_GREEN + "/savagecore " + EnumChatFormatting.RED + "stversion" + ": " + EnumChatFormatting.RESET + "Returns the current version of SavageTech you are using and update info."));
         }
     }

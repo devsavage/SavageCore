@@ -30,8 +30,7 @@ public final class Font
 {
     private static final String SECTION_SIGN = "\u00a7";
 
-    private Font()
-    {
+    private Font() {
     }
 
     /**

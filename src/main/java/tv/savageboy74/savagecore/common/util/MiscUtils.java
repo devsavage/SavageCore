@@ -45,13 +45,11 @@ import java.util.Random;
 
 public class MiscUtils
 {
-    public static String localize(String s)
-    {
+    public static String localize(String s) {
         return StatCollector.translateToLocal(s);
     }
 
-    public static EntityItem dropItemStackInWorld(World worldObj, BlockPos pos, ItemStack stack)
-    {
+    public static EntityItem dropItemStackInWorld(World worldObj, BlockPos pos, ItemStack stack) {
         float f = 0.7F;
         float d0 = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5F;
         float d1 = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5F;
@@ -59,56 +57,48 @@ public class MiscUtils
         EntityItem entityitem = new EntityItem(worldObj, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, stack);
         entityitem.setPickupDelay(10);
 
-        if (stack.hasTagCompound())
-        {
-            entityitem.getEntityItem().setTagCompound((NBTTagCompound)stack.getTagCompound().copy());
+        if (stack.hasTagCompound()) {
+            entityitem.getEntityItem().setTagCompound((NBTTagCompound) stack.getTagCompound().copy());
         }
 
         worldObj.spawnEntityInWorld(entityitem);
         return entityitem;
     }
 
-    public static void dropAsEntity(World world, int i, int j, int k, ItemStack stack)
-    {
-        if(stack != null) {
+    public static void dropAsEntity(World world, int i, int j, int k, ItemStack stack) {
+        if (stack != null) {
             double d = 0.7D;
-            double e = (double)world.rand.nextFloat() * d + (1.0D - d) * 0.5D;
-            double f = (double)world.rand.nextFloat() * d + (1.0D - d) * 0.5D;
-            double g = (double)world.rand.nextFloat() * d + (1.0D - d) * 0.5D;
-            EntityItem entityItem = new EntityItem(world, (double)i + e, (double)j + f, (double)k + g, stack.copy());
+            double e = (double) world.rand.nextFloat() * d + (1.0D - d) * 0.5D;
+            double f = (double) world.rand.nextFloat() * d + (1.0D - d) * 0.5D;
+            double g = (double) world.rand.nextFloat() * d + (1.0D - d) * 0.5D;
+            EntityItem entityItem = new EntityItem(world, (double) i + e, (double) j + f, (double) k + g, stack.copy());
             entityItem.setPickupDelay(10);
             world.spawnEntityInWorld(entityItem);
         }
     }
 
-    public static boolean isEnabled(ItemStack itemStack)
-    {
+    public static boolean isEnabled(ItemStack itemStack) {
         return NBTHelper.getBoolean(itemStack, "enabled");
     }
 
-    public static Object getIdent(Item item)
-    {
+    public static Object getIdent(Item item) {
         return item == null ? null : Item.itemRegistry.getNameForObject(item);
     }
 
-    public static Object getIdent(Block block)
-    {
+    public static Object getIdent(Block block) {
         return block == null ? null : Block.blockRegistry.getNameForObject(block);
     }
 
-    public static float getDefualtFlySpeed()
-    {
+    public static float getDefualtFlySpeed() {
         return 0.05F;
     }
 
-    public static boolean consumeFirstInventoryItem(IInventory inventory, ItemStack stack)
-    {
+    public static boolean consumeFirstInventoryItem(IInventory inventory, ItemStack stack) {
         int slotWithStack = getFirstSlotWithStack(inventory, stack);
         if (slotWithStack > -1) {
             ItemStack stackInSlot = inventory.getStackInSlot(slotWithStack);
             stackInSlot.stackSize--;
-            if (stackInSlot.stackSize == 0)
-            {
+            if (stackInSlot.stackSize == 0) {
                 inventory.setInventorySlotContents(slotWithStack, null);
             }
 
@@ -117,14 +107,11 @@ public class MiscUtils
         return false;
     }
 
-    public static int getFirstSlotWithStack(IInventory inventory, ItemStack stack)
-    {
+    public static int getFirstSlotWithStack(IInventory inventory, ItemStack stack) {
         inventory = getInventory(inventory);
-        for (int i = 0; i < inventory.getSizeInventory(); i++)
-        {
+        for (int i = 0; i < inventory.getSizeInventory(); i++) {
             ItemStack stackInSlot = inventory.getStackInSlot(i);
-            if (stackInSlot != null && stackInSlot.isItemEqual(stack))
-            {
+            if (stackInSlot != null && stackInSlot.isItemEqual(stack)) {
                 return i;
             }
         }
@@ -132,45 +119,36 @@ public class MiscUtils
         return -1;
     }
 
-    public static IInventory getInventory(IInventory inventory)
-    {
+    public static IInventory getInventory(IInventory inventory) {
         return inventory;
     }
 
-    public static ItemStack returnItem(ItemStack stack)
-    {
-        return (stack == null || stack.stackSize <= 0)? null : stack.copy();
+    public static ItemStack returnItem(ItemStack stack) {
+        return (stack == null || stack.stackSize <= 0) ? null : stack.copy();
     }
 
-    public static final double lengthSq(double x, double y, double z)
-    {
+    public static final double lengthSq(double x, double y, double z) {
         return x * x + y * y + z * z;
     }
 
-    public static final double lengthSq(double x, double z)
-    {
+    public static final double lengthSq(double x, double z) {
         return x * x + z * z;
     }
 
-    public static boolean isClient()
-    {
+    public static boolean isClient() {
         return FMLCommonHandler.instance().getEffectiveSide().isClient();
     }
 
-    public static double gaussian(Random rand)
-    {
+    public static double gaussian(Random rand) {
         return rand.nextGaussian() / 6;
     }
 
-    public static boolean isEqual(Block blockA, Block blockB)
-    {
-        if (blockA == blockB)
-        {
+    public static boolean isEqual(Block blockA, Block blockB) {
+        if (blockA == blockB) {
             return true;
         }
 
-        if (blockA == null | blockB == null)
-        {
+        if (blockA == null | blockB == null) {
             return false;
         }
 
@@ -179,27 +157,21 @@ public class MiscUtils
 
     public static List<ItemStack> breakBlock(EntityPlayer player, World worldObj, BlockPos pos, Block block, int fortune, boolean doBreak, boolean silkTouch, IBlockState state) {
 
-        if (block.getBlockHardness(worldObj, pos) == -1)
-        {
+        if (block.getBlockHardness(worldObj, pos) == -1) {
             return new LinkedList<ItemStack>();
         }
 
         int meta = worldObj.getBlockState(pos).getBlock().getMetaFromState(state);
         List<ItemStack> stacks = null;
 
-        if (silkTouch && block.canSilkHarvest(worldObj, pos, block.getDefaultState(), player))
-        {
+        if (silkTouch && block.canSilkHarvest(worldObj, pos, block.getDefaultState(), player)) {
             stacks = new LinkedList<ItemStack>();
             stacks.add(createStackedBlock(block, meta));
-        }
-
-        else
-        {
+        } else {
             stacks = block.getDrops(worldObj, pos, state, fortune);
         }
 
-        if (!doBreak)
-        {
+        if (!doBreak) {
             return stacks;
         }
 
@@ -207,8 +179,7 @@ public class MiscUtils
         worldObj.setBlockToAir(pos);
 
         List<EntityItem> result = worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.fromBounds(pos.getX() - 2, pos.getY() - 2, pos.getZ() - 2, pos.getX() + 3, pos.getY() + 3, pos.getZ() + 3));
-        for (int i = 0; i < result.size(); i++)
-        {
+        for (int i = 0; i < result.size(); i++) {
             EntityItem entity = result.get(i);
             if (entity.isDead || entity.getEntityItem().stackSize <= 0) {
                 continue;
@@ -221,12 +192,10 @@ public class MiscUtils
         return stacks;
     }
 
-    public static ItemStack createStackedBlock(Block block, int meta)
-    {
+    public static ItemStack createStackedBlock(Block block, int meta) {
 
         Item item = Item.getItemFromBlock(block);
-        if (item.getHasSubtypes())
-        {
+        if (item.getHasSubtypes()) {
             return new ItemStack(item, 1, meta);
         }
 
@@ -235,18 +204,15 @@ public class MiscUtils
 
     public static NBTTagCompound setItemStackTagName(NBTTagCompound tag, String name) {
 
-        if (name == "")
-        {
+        if (name == "") {
             return null;
         }
 
-        if (tag == null)
-        {
+        if (tag == null) {
             tag = new NBTTagCompound();
         }
 
-        if (!tag.hasKey("display"))
-        {
+        if (!tag.hasKey("display")) {
             tag.setTag("display", new NBTTagCompound());
         }
 
@@ -255,37 +221,32 @@ public class MiscUtils
         return tag;
     }
 
-    public static ItemStack readItemStackFromNBT(NBTTagCompound nbt)
-    {
+    public static ItemStack readItemStackFromNBT(NBTTagCompound nbt) {
 
         ItemStack stack = new ItemStack(Item.getItemById(nbt.getShort("id")));
         stack.stackSize = nbt.getInteger("Count");
         stack.setItemDamage(Math.max(0, nbt.getShort("Damage")));
 
-        if (nbt.hasKey("tag", 10))
-        {
+        if (nbt.hasKey("tag", 10)) {
             nbt.getCompoundTag("tag");
         }
 
         return stack;
     }
 
-    public static NBTTagCompound writeItemStackToNBT(ItemStack stack, NBTTagCompound nbt)
-    {
+    public static NBTTagCompound writeItemStackToNBT(ItemStack stack, NBTTagCompound nbt) {
 
         nbt.setShort("id", (short) Item.getIdFromItem(stack.getItem()));
         nbt.setInteger("Count", stack.stackSize);
         nbt.setShort("Damage", (short) getItemDamage(stack));
 
-        if (stack.getTagCompound() != null)
-        {
+        if (stack.getTagCompound() != null) {
             nbt.setTag("tag", stack.getTagCompound());
         }
         return nbt;
     }
 
-    public static NBTTagCompound writeItemStackToNBT(ItemStack stack, int amount, NBTTagCompound nbt)
-    {
+    public static NBTTagCompound writeItemStackToNBT(ItemStack stack, int amount, NBTTagCompound nbt) {
 
         nbt.setShort("id", (short) Item.getIdFromItem(stack.getItem()));
         nbt.setInteger("Count", amount);
@@ -297,13 +258,11 @@ public class MiscUtils
         return nbt;
     }
 
-    public static int getItemDamage(ItemStack stack)
-    {
+    public static int getItemDamage(ItemStack stack) {
         return Items.diamond.getDamage(stack);
     }
 
-    public static boolean isBlockUnbreakable(World world, BlockPos pos)
-    {
+    public static boolean isBlockUnbreakable(World world, BlockPos pos) {
         Block cBlock = world.getBlockState(pos).getBlock();
         return cBlock instanceof BlockLiquid || cBlock.getBlockHardness(world, pos) < 0;
     }

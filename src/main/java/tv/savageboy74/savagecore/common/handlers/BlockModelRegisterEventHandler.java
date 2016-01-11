@@ -40,18 +40,15 @@ public class BlockModelRegisterEventHandler
     private static Map<Block, Set<IProperty>> hiddenProperties = Maps.newHashMap();
 
     @SubscribeEvent
-    public void onBlockModelRegister(BlockModelRegisterEvent event)
-    {
+    public void onBlockModelRegister(BlockModelRegisterEvent event) {
         BlockModelShapes modelShapes = event.modelShapes;
 
-        for (Map.Entry<Block, Set<IProperty>> entry : hiddenProperties.entrySet())
-        {
-            modelShapes.registerBlockWithStateMapper(entry.getKey(), (new StateMap.Builder()).ignore(entry.getValue().toArray(new IProperty[] {})).build());
+        for (Map.Entry<Block, Set<IProperty>> entry : hiddenProperties.entrySet()) {
+            modelShapes.registerBlockWithStateMapper(entry.getKey(), (new StateMap.Builder()).ignore(entry.getValue().toArray(new IProperty[]{})).build());
         }
     }
 
-    public static void addHiddenProperties(Block block, IProperty... properties)
-    {
+    public static void addHiddenProperties(Block block, IProperty... properties) {
         hiddenProperties.put(block, Sets.newHashSet(properties));
     }
 }

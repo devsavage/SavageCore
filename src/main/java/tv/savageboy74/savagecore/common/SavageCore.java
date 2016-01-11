@@ -90,7 +90,7 @@ public class SavageCore
 
     @SubscribeEvent
     public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event) {
-        if(ConfigHandler.checkForUpdates) {
+        if (ConfigHandler.checkForUpdates) {
             if (SavageCoreProps.OUTDATED) {
                 EnumChatFormatting darkRed = EnumChatFormatting.DARK_RED;
                 EnumChatFormatting aqua = EnumChatFormatting.AQUA;
@@ -100,7 +100,7 @@ public class SavageCore
 
                 String name = SavageCoreProps.MOD_NAME;
                 String outdatedText = aqua + "[" + name + "] " + reset + "This version of " + green + name + reset + " is" + darkRed + " outdated!";
-                String versionText =  "Current Version: " + darkRed + SavageCoreProps.VERSION + reset + " Newest Version: " + darkGreen +  SavageCoreProps.NEWVERSION;
+                String versionText = "Current Version: " + darkRed + SavageCoreProps.VERSION + reset + " Newest Version: " + darkGreen + SavageCoreProps.NEWVERSION;
 
                 event.player.addChatComponentMessage(new ChatComponentText(outdatedText));
                 event.player.addChatComponentMessage(new ChatComponentText(versionText));

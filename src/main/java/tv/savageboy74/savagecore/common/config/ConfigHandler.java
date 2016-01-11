@@ -36,30 +36,24 @@ public class ConfigHandler
     public static Configuration configuration;
     public static boolean checkForUpdates = true;
 
-    public static void init(File configFile)
-    {
-        if (configuration == null)
-        {
+    public static void init(File configFile) {
+        if (configuration == null) {
             configuration = new Configuration(new File("config/SavageCore.cfg"));
             loadConfiguration();
         }
     }
 
     @SubscribeEvent
-    public void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
-    {
-        if (event.modID.equalsIgnoreCase(SavageCoreProps.MOD_ID))
-        {
+    public void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event) {
+        if (event.modID.equalsIgnoreCase(SavageCoreProps.MOD_ID)) {
             loadConfiguration();
         }
     }
 
-    private static void loadConfiguration()
-    {
+    private static void loadConfiguration() {
         checkForUpdates = configuration.getBoolean(Strings.Config.CONFIG_UPDATES_NAME, Configuration.CATEGORY_GENERAL, true, Strings.Config.CONFIG_UPDATES_DESC);
 
-        if (configuration.hasChanged())
-        {
+        if (configuration.hasChanged()) {
             configuration.save();
         }
     }

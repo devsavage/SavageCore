@@ -40,21 +40,18 @@ public class CommandHandler extends CommandBase
 
     private static TMap<String, ISubCommand> commands = new THashMap<String, ISubCommand>();
 
-    static
-    {
+    static {
         registerSubCommand(CommandHelp.instance);
         registerSubCommand(CommandVersion.instance);
         registerSubCommand(CommandUpdate.instance);
     }
 
-    public static void initCommands(FMLServerStartingEvent event)
-    {
+    public static void initCommands(FMLServerStartingEvent event) {
         event.registerServerCommand(instance);
     }
 
-    public static boolean registerSubCommand(ISubCommand command)
-    {
-        if(!commands.containsKey(command.getCommandName())) {
+    public static boolean registerSubCommand(ISubCommand command) {
+        if (!commands.containsKey(command.getCommandName())) {
             commands.put(command.getCommandName(), command);
             return true;
         }
@@ -63,14 +60,12 @@ public class CommandHandler extends CommandBase
     }
 
     @Override
-    public String getCommandName()
-    {
+    public String getCommandName() {
         return "savagecore";
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender)
-    {
+    public String getCommandUsage(ICommandSender sender) {
         return "/" + getCommandName() + " help";
     }
 
@@ -80,8 +75,7 @@ public class CommandHandler extends CommandBase
     }
 
     @Override
-    public void processCommand(ICommandSender sender, String[] args) throws CommandException
-    {
+    public void processCommand(ICommandSender sender, String[] args) throws CommandException {
         if (args.length <= 0) {
             throw new CommandException("Type '" + getCommandUsage(sender) + "' for help.");
         }
@@ -95,8 +89,7 @@ public class CommandHandler extends CommandBase
     }
 
     @Override
-    public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
-    {
+    public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
         if (args.length == 1) {
             return getListOfStringsMatchingLastWord(args, commands.keySet());
         } else if (commands.containsKey(args[0])) {
@@ -107,8 +100,7 @@ public class CommandHandler extends CommandBase
     }
 
     @Override
-    public List getCommandAliases()
-    {
+    public List getCommandAliases() {
         List altName = new ArrayList();
 
         altName.add("sc");

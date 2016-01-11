@@ -35,16 +35,16 @@ import java.util.List;
 
 /**
  * Contains various helper functions to assist with String manipulation.
- *
+ * <p/>
  * Some Parts From CoFHLib
- *
+ * <p/>
  * All Rights Reserved.
  *
- * @author  King Lemming
- *
+ * @author King Lemming
  */
 
-public final class StringHelper {
+public final class StringHelper
+{
 
     private StringHelper() {
 
@@ -185,7 +185,9 @@ public final class StringHelper {
         }
     }
 
-    /** When formatting a string, always apply color before font modification. */
+    /**
+     * When formatting a string, always apply color before font modification.
+     */
     public static final String BLACK = (char) 167 + "0";
     public static final String BLUE = (char) 167 + "1";
     public static final String GREEN = (char) 167 + "2";
@@ -210,7 +212,7 @@ public final class StringHelper {
     public static final String ITALIC = (char) 167 + "o";
     public static final String END = (char) 167 + "r";
 
-    public static final String[] ROMAN_NUMERAL = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" };
+    public static final String[] ROMAN_NUMERAL = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
 
     public static boolean displayShiftForDetail = true;
     public static boolean displayStackCount = false;
