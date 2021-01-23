@@ -1,6 +1,0 @@
-Changelog:
-
-	Build 1.2:
-		savageboy74: More fixes and additions
-	Build 1.1:
-		savageboy74: Initial update to Minecraft 1.8
