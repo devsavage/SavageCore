@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[35,)"
+issueTrackerURL="https://github.com/devsavage/savagecore/issues"
+license="MIT"
+
+[[mods]]
+    modId="savagecore"
+    version="${file.jarVersion}"
+    displayName="SavageCore"
+    updateJSONURL="https://api.savagedev.io/mc-mods/savagecore/versions?forge=true"
+    displayURL="https://nlcc.savagedev.io/minecraft-mods/savagecore"
+    authors="savagedev"
+    description='''
+    Shared library mod required by (most) mods from savagedev
+    '''
+
+[[dependencies.savagecore]]
+    modId="forge"
+    mandatory=true
+    versionRange="[35,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.savagecore]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.4,1.17]"
+    ordering="NONE"
+    side="BOTH"
