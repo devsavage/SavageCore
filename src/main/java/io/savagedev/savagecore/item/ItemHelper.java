@@ -30,6 +30,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.CPlayerDiggingPacket;
 import net.minecraft.network.play.server.SChangeBlockPacket;
@@ -230,8 +231,7 @@ public class ItemHelper
         return worldIn.rayTraceBlocks(new RayTraceContext(vec3d, vec3d1, RayTraceContext.BlockMode.OUTLINE, fluidMode, player));
     }
 
-    public static float blockStrength(BlockState state, PlayerEntity player, World world, BlockPos pos)
-    {
+    public static float blockStrength(BlockState state, PlayerEntity player, World world, BlockPos pos) {
         float hardness = state.getBlockHardness(world, pos);
         if (hardness < 0.0F) {
             return 0.0F;
@@ -242,5 +242,23 @@ public class ItemHelper
         } else {
             return player.getDigSpeed(state, pos) / hardness / 30F;
         }
+    }
+
+    public static boolean equalsIgnoreStackSize(ItemStack stack1, ItemStack stack2) {
+        if(stack1 != null && stack2 != null) {
+            if(Item.getIdFromItem(stack1.getItem()) - Item.getIdFromItem(stack2.getItem()) == 0) {
+                if(stack1.getItem() == stack2.getItem()) {
+                    if(stack1.getDamage() == stack2.getDamage()) {
+                        if(stack1.hasTag() && stack2.hasTag()) {
+                            return ItemStack.areItemsEqual(stack1, stack2);
+                        } else {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }
