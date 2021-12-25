@@ -23,14 +23,15 @@ package io.savagedev.savagecore.nbt;
  * THE SOFTWARE.
  */
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.NbtComponent;
+import net.minecraft.world.item.ItemStack;
 
 public class NBTHelper
 {
     private static void initNBTTagCompound(ItemStack itemStack) {
         if (itemStack.getTag() == null) {
-            itemStack.setTag(new CompoundNBT());
+            itemStack.setTag(new CompoundTag());
         }
     }
 

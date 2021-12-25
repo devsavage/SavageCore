@@ -1,12 +1,12 @@
 SavageCore
 ==========
 
-A core mod for some of my mods.  
+A core mod for some of my Minecraft mods.  
 
 MOD INFO
 ========
-Minecraft Version: 1.16.4  
-Forge Version: 35.1.35+  
+Minecraft Version: 1.17.1  
+Forge Version: 37.1.1+  
 
 Links
 ======

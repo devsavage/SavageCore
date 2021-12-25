@@ -123,12 +123,18 @@ public class Updater
 
             connection = (HttpURLConnection) url.openConnection();
 
+            connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36");
+
+            connection.connect();
+
             stream = connection.getInputStream();
 
             bufferedReader = new BufferedReader(new InputStreamReader(stream));
 
             data = bufferedReader.readLine();
-        } catch (IOException ignored) {} finally {
+        } catch (IOException ignored) {
+            LogHelper.error("Update checking encountered an error!");
+        } finally {
             if(bufferedReader != null) {
                 try {
                     bufferedReader.close();

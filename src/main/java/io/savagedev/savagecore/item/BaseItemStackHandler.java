@@ -23,10 +23,8 @@ package io.savagedev.savagecore.item;
  * THE SOFTWARE.
  */
 
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -112,9 +110,5 @@ public class BaseItemStackHandler extends ItemStackHandler
 
     public void setOutputSlots(int... slots) {
         this.outputSlots = slots;
-    }
-
-    public IInventory toIInventory() {
-        return new Inventory(this.stacks.toArray(new ItemStack[0]));
     }
 }

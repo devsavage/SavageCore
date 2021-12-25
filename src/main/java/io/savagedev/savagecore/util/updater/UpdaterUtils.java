@@ -26,11 +26,10 @@ package io.savagedev.savagecore.util.updater;
 import io.savagedev.savagecore.init.ModConfigs;
 import io.savagedev.savagecore.util.reference.CoreReference;
 import io.savagedev.savagecore.util.logger.LogHelper;
-import net.minecraft.util.Util;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextComponentUtils;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 
 import java.io.IOException;
@@ -40,22 +39,22 @@ public class UpdaterUtils
     public static void sendUpdateMessageIfOutdated(String modName, PlayerEvent.PlayerLoggedInEvent event, Updater updater) {
         if(updater.getStatus() == UpdateStatus.OUTDATED) {
             String version = updater.getVersionForOutput();
-            String outdatedText = TextFormatting.AQUA + "[" + modName + "] " +
-                    TextFormatting.RESET +
+            String outdatedText = ChatFormatting.AQUA + "[" + modName + "] " +
+                    ChatFormatting.RESET +
                     "is " +
-                    TextFormatting.RED +
+                    ChatFormatting.RED +
                     "outdated! " +
-                    TextFormatting.RESET +
+                    ChatFormatting.RESET +
                     "Newest Version: " +
-                    TextFormatting.GOLD + version +
-                    TextFormatting.RESET +
+                    ChatFormatting.GOLD + version +
+                    ChatFormatting.RESET +
                     " Current Version: " +
-                    TextFormatting.RED +
+                    ChatFormatting.RED +
                     updater.getCurrentVersion();
             String downloadText = CoreReference.Strings.DOWNLOAD;
             String update_url = updater.getDownloadUrl();
 
-            event.getPlayer().sendMessage(ITextComponent.Serializer.getComponentFromJson("[{\"text\":\"" + outdatedText + "\"}," + "{\"text\":\" " + TextFormatting.WHITE + "[" + TextFormatting.GREEN + downloadText + TextFormatting.WHITE + "]\"," + "\"color\":\"green\",\"hoverEvent\":{\"action\":\"show_text\",\"value\":" + "{\"text\":\"Click to download the latest version\",\"color\":\"yellow\"}}," + "\"clickEvent\":{\"action\":\"open_url\",\"value\":\"" + update_url + "\"}}]"), Util.DUMMY_UUID);
+            event.getPlayer().sendMessage(Component.Serializer.fromJson("[{\"text\":\"" + outdatedText + "\"}," + "{\"text\":\" " + ChatFormatting.WHITE + "[" + ChatFormatting.GREEN + downloadText + ChatFormatting.WHITE + "]\"," + "\"color\":\"green\",\"hoverEvent\":{\"action\":\"show_text\",\"value\":" + "{\"text\":\"Click to download the latest version\",\"color\":\"yellow\"}}," + "\"clickEvent\":{\"action\":\"open_url\",\"value\":\"" + update_url + "\"}}]"), Util.NIL_UUID);
         }
     }
 
@@ -80,8 +79,8 @@ public class UpdaterUtils
 
                 e.printStackTrace();
             }
+        } else {
+            LogHelper.info(CoreReference.Updater.UPDATE_DISABLED);
         }
-
-        LogHelper.info(CoreReference.Updater.UPDATE_DISABLED);
     }
 }

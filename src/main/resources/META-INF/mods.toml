@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[35,)"
+loaderVersion="[37,)"
 issueTrackerURL="https://github.com/devsavage/savagecore/issues"
 license="MIT"
 
@@ -7,7 +7,7 @@ license="MIT"
     modId="savagecore"
     version="${file.jarVersion}"
     displayName="SavageCore"
-    updateJSONURL="https://api.savagedev.io/mc-mods/savagecore/versions?forge=true"
+    updateJSONURL="https://api.savagedev.io/mc-mods/savagecore/versions?forge=true&version=1.17.1"
     displayURL="https://nlcc.savagedev.io/minecraft-mods/savagecore"
     authors="savagedev"
     description='''
@@ -17,13 +17,13 @@ license="MIT"
 [[dependencies.savagecore]]
     modId="forge"
     mandatory=true
-    versionRange="[35,)"
+    versionRange="[37,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.savagecore]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.4,1.17]"
+    versionRange="[1.17.1,1.18]"
     ordering="NONE"
     side="BOTH"
