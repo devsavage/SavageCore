@@ -34,13 +34,14 @@ public class CoreReference
     public static class Updater
     {
         public static final String UPDATE_URL = "https://api.savagedev.io";
-        public static final String BEGIN_UPDATE_CHECK = "Starting update check...";
+        public static final String BEGIN_UPDATE_CHECK = "Starting update check for {}...";
         public static final String UPDATE_CHECK = "Checking for update...";
         public static final String UP_TO_DATE = "Up to date.";
         public static final String OUTDATED = "This version is outdated! Newest version: {}";
         public static final String UPDATE_STATUS = "Updater status: {}";
         public static final String UPDATE_FAILED = "Update check failed!";
         public static final String UPDATE_DISABLED = "Update checking is disabled! Change this in the config file.";
+        public static final String UNSUPPORTED = "This version of Minecraft may not be supported (yet).";
     }
 
     public static class Strings

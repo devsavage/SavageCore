@@ -30,5 +30,6 @@ public enum UpdateStatus
     UP_TO_DATE,
     OUTDATED,
     AHEAD,
+    UNSUPPORTED,
     UNKNOWN
 }

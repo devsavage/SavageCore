@@ -28,7 +28,9 @@ import com.google.gson.JsonParser;
 import io.savagedev.savagecore.util.reference.CoreReference;
 import io.savagedev.savagecore.util.logger.LogHelper;
 import org.apache.maven.artifact.versioning.ComparableVersion;
+import org.jline.utils.Log;
 
+import javax.json.Json;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -77,7 +79,7 @@ public class Updater
         String version = this.recommended ? getRecommendedVersion() : getLatestVersion();
 
         if(version == null) {
-            STATUS = UpdateStatus.UNKNOWN;
+            STATUS = UpdateStatus.UNSUPPORTED;
             return;
         }
 
@@ -170,6 +172,13 @@ public class Updater
             Object obj = parser.parse(versionsJson);
             JsonObject jsonObject = (JsonObject) obj;
 
+            JsonObject versions = jsonObject.getAsJsonObject("versions");
+            JsonObject currentVersion = versions.getAsJsonObject(getMinecraftVersion());
+
+            if(currentVersion == null) {
+                return null;
+            }
+
             return jsonObject.get(CoreReference.Strings.RECOMMENDED.toLowerCase()).getAsString();
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -188,15 +197,22 @@ public class Updater
         Object obj = parser.parse(versionsJson);
         JsonObject jsonObject = (JsonObject) obj;
 
-        return jsonObject.get(CoreReference.Strings.LATEST.toLowerCase()).getAsString();
+        JsonObject versions = jsonObject.getAsJsonObject("versions");
+        JsonObject currentVersion = versions.getAsJsonObject(getMinecraftVersion());
+
+        if(currentVersion == null) {
+            return null;
+        }
+
+        return currentVersion.get(CoreReference.Strings.LATEST.toLowerCase()).getAsString();
     }
 
     public String getRecommendedVersion() {
         try {
             return getRecommendedVersion(getVersionsData());
-        } catch (IOException ignored) {}
-
-        return null;
+        } catch (IOException ignored) {
+            return null;
+        }
     }
 
     public String getLatestVersion() {
@@ -278,7 +294,14 @@ public class Updater
         Object obj = parser.parse(versionsData);
         JsonObject jsonObject = (JsonObject) obj;
 
-        return jsonObject.get(CoreReference.Strings.DOWNLOAD.toLowerCase() + "-"  + downloadType).getAsString();
+        JsonObject versions = jsonObject.getAsJsonObject("versions");
+        JsonObject currentVersion = versions.getAsJsonObject(getMinecraftVersion());
+
+        if(currentVersion == null) {
+            return null;
+        }
+
+        return currentVersion.get(CoreReference.Strings.DOWNLOAD.toLowerCase() + "-"  + downloadType).getAsString();
     }
 
     public void setDownloadUrl(String url) {

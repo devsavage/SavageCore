@@ -60,14 +60,15 @@ public class UpdaterUtils
 
     public static void initializeUpdateCheck(Updater updater) {
         if(ModConfigs.ENABLE_UPDATE_CHECK.get()) {
-            LogHelper.info(CoreReference.Updater.BEGIN_UPDATE_CHECK);
-
+            LogHelper.info(CoreReference.Updater.BEGIN_UPDATE_CHECK, updater.getModId());
             try {
                 LogHelper.info(CoreReference.Updater.UPDATE_CHECK);
 
                 updater.checkForUpdate();
 
-                if(updater.getStatus() == UpdateStatus.UP_TO_DATE) {
+                if(updater.getStatus() == UpdateStatus.UNSUPPORTED) {
+                    LogHelper.info(CoreReference.Updater.UNSUPPORTED);
+                } else if(updater.getStatus() == UpdateStatus.UP_TO_DATE) {
                     LogHelper.info(CoreReference.Updater.UP_TO_DATE);
                 } else if(updater.getStatus() == UpdateStatus.OUTDATED) {
                     LogHelper.info(CoreReference.Updater.OUTDATED, updater.getVersionForOutput());

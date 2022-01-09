@@ -32,21 +32,22 @@ public class LogHelper
     private static final Logger logger = LogManager.getLogger(CoreReference.MOD_ID);
 
     public static final Marker MOD_MARKER = MarkerManager.getMarker(CoreReference.MOD_ID);
-    public static final String TAG = "[" + CoreReference.MOD_ID + "";
+
+    public static final String TAG = "[" + CoreReference.MOD_NAME+ "] ";
 
     public static void log(Level level, Marker marker, Message message) {
-        logger.log(level, marker, message);
+        logger.log(level, marker, TAG + message);
     }
     public static void log(Level level, Marker marker, Object object) {
-        logger.log(level, marker, object);
+        logger.log(level, marker, TAG + object);
     }
 
     public static void log(Level level, Marker marker, String message) {
-        logger.log(level, marker, message);
+        logger.log(level, marker, TAG + message);
     }
 
     public static void log(Level level, Marker marker, String format, Object... params) {
-        logger.log(level, marker, format, params);
+        logger.log(level, marker, TAG + format, params);
     }
 
     public static void log(Level level, Message message) {
