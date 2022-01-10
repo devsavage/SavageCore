@@ -76,6 +76,10 @@ public class ItemHelper
         if(mop.getType() == HitResult.Type.BLOCK) {
             BlockHitResult blockRayTraceResult = (BlockHitResult) mop;
 
+            if(!origin.equals(blockRayTraceResult.getBlockPos())) {
+                return ImmutableList.of();
+            }
+
             switch (blockRayTraceResult.getDirection()) {
                 case DOWN:
                 case UP:
@@ -85,12 +89,16 @@ public class ItemHelper
                     z = vec.getX() * width + vec.getZ() * height;
                     start = start.offset(-x / 2, 0, -z / 2);
                     if (x % 2 == 0) {
-                        if (x > 0 && blockRayTraceResult.getLocation().x() - blockRayTraceResult.getBlockPos().getX() > 0.5d) start = start.offset(1, 0, 0);
-                        else if (x < 0 && blockRayTraceResult.getLocation().x() - blockRayTraceResult.getBlockPos().getX() < 0.5d) start = start.offset(-1, 0, 0);
+                        if (x > 0 && blockRayTraceResult.getLocation().x() - blockRayTraceResult.getBlockPos().getX() > 0.5d)
+                            start = start.offset(1, 0, 0);
+                        else if (x < 0 && blockRayTraceResult.getLocation().x() - blockRayTraceResult.getBlockPos().getX() < 0.5d)
+                            start = start.offset(-1, 0, 0);
                     }
                     if (z % 2 == 0) {
-                        if (z > 0 && blockRayTraceResult.getLocation().z() - blockRayTraceResult.getBlockPos().getZ() > 0.5d) start = start.offset(0, 0, 1);
-                        else if (z < 0 && blockRayTraceResult.getLocation().z() - blockRayTraceResult.getBlockPos().getZ() < 0.5d) start = start.offset(0, 0, -1);
+                        if (z > 0 && blockRayTraceResult.getLocation().z() - blockRayTraceResult.getBlockPos().getZ() > 0.5d)
+                            start = start.offset(0, 0, 1);
+                        else if (z < 0 && blockRayTraceResult.getLocation().z() - blockRayTraceResult.getBlockPos().getZ() < 0.5d)
+                            start = start.offset(0, 0, -1);
                     }
                     break;
                 case NORTH:
@@ -99,8 +107,10 @@ public class ItemHelper
                     y = height;
                     z = blockRayTraceResult.getDirection().getAxisDirection().getStep() * -depth;
                     start = start.offset(-x / 2, -y / 2, 0);
-                    if (x % 2 == 0 && blockRayTraceResult.getLocation().x() - blockRayTraceResult.getBlockPos().getX() > 0.5d) start = start.offset(1, 0, 0);
-                    if (y % 2 == 0 && blockRayTraceResult.getLocation().y() - blockRayTraceResult.getBlockPos().getY() > 0.5d) start = start.offset(0, 1, 0);
+                    if (x % 2 == 0 && blockRayTraceResult.getLocation().x() - blockRayTraceResult.getBlockPos().getX() > 0.5d)
+                        start = start.offset(1, 0, 0);
+                    if (y % 2 == 0 && blockRayTraceResult.getLocation().y() - blockRayTraceResult.getBlockPos().getY() > 0.5d)
+                        start = start.offset(0, 1, 0);
                     break;
                 case WEST:
                 case EAST:
@@ -108,8 +118,10 @@ public class ItemHelper
                     y = height;
                     z = width;
                     start = start.offset(-0, -y / 2, -z / 2);
-                    if (y % 2 == 0 && blockRayTraceResult.getLocation().y() - blockRayTraceResult.getBlockPos().getY() > 0.5d) start = start.offset(0, 1, 0);
-                    if (z % 2 == 0 && blockRayTraceResult.getLocation().z() - blockRayTraceResult.getBlockPos().getZ() > 0.5d) start = start.offset(0, 0, 1);
+                    if (y % 2 == 0 && blockRayTraceResult.getLocation().y() - blockRayTraceResult.getBlockPos().getY() > 0.5d)
+                        start = start.offset(0, 1, 0);
+                    if (z % 2 == 0 && blockRayTraceResult.getLocation().z() - blockRayTraceResult.getBlockPos().getZ() > 0.5d)
+                        start = start.offset(0, 0, 1);
                     break;
                 default:
                     x = y = z = 0;
