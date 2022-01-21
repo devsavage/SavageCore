@@ -28,16 +28,14 @@ import com.google.gson.JsonParser;
 import io.savagedev.savagecore.util.reference.CoreReference;
 import io.savagedev.savagecore.util.logger.LogHelper;
 import org.apache.maven.artifact.versioning.ComparableVersion;
-import org.jline.utils.Log;
 
-import javax.json.Json;
+import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.Buffer;
 
 public class Updater
 {
@@ -114,16 +112,16 @@ public class Updater
         }
     }
 
-    public String getVersionsData() throws IOException {
+    private String getVersionsData() throws IOException {
         String data = null;
-        HttpURLConnection connection = null;
+        HttpsURLConnection connection = null;
         InputStream stream = null;
         BufferedReader bufferedReader = null;
 
         try {
             URL url = new URL(this.buildUpdateUrl());
 
-            connection = (HttpURLConnection) url.openConnection();
+            connection = (HttpsURLConnection) url.openConnection();
 
             connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36");
 
@@ -161,7 +159,7 @@ public class Updater
         return data;
     }
 
-    public String getRecommendedVersion(String versionsJson) {
+    private String getRecommendedVersion(String versionsJson) {
         if(versionsJson == null) {
             return null;
         }
@@ -179,7 +177,7 @@ public class Updater
                 return null;
             }
 
-            return jsonObject.get(CoreReference.Strings.RECOMMENDED.toLowerCase()).getAsString();
+            return currentVersion.get(CoreReference.Strings.RECOMMENDED.toLowerCase()).getAsString();
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -187,7 +185,7 @@ public class Updater
         return null;
     }
 
-    public String getLatestVersion(String versionsJson) {
+    private String getLatestVersion(String versionsJson) {
         if(versionsJson == null) {
             return null;
         }
@@ -231,7 +229,7 @@ public class Updater
         return this.getLatestVersion();
     }
 
-    public void processVersionStatus(String versionToCompare) {
+    private void processVersionStatus(String versionToCompare) {
         ComparableVersion current = new ComparableVersion(this.getCurrentVersion());
         ComparableVersion recOrLatest = new ComparableVersion(versionToCompare);
 
@@ -284,7 +282,7 @@ public class Updater
         return this.downloadUrl;
     }
 
-    public String getDownloadUrl(String versionsData, String downloadType) {
+    private String getDownloadUrl(String versionsData, String downloadType) {
         if(versionsData == null) {
             return null;
         }
@@ -304,7 +302,7 @@ public class Updater
         return currentVersion.get(CoreReference.Strings.DOWNLOAD.toLowerCase() + "-"  + downloadType).getAsString();
     }
 
-    public void setDownloadUrl(String url) {
+    private void setDownloadUrl(String url) {
         this.downloadUrl = url;
     }
 
