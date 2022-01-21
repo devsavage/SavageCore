@@ -233,7 +233,7 @@ public class Updater
         ComparableVersion current = new ComparableVersion(this.getCurrentVersion());
         ComparableVersion recOrLatest = new ComparableVersion(versionToCompare);
 
-        if(currentVersion.equals("NONE")) {
+        if(currentVersion.equals("0.0NONE") || currentVersion.equals("NONE")) {
             setStatus(UpdateStatus.NONE);
             LogHelper.info("Current version is NONE. Development environment?");
             return;
