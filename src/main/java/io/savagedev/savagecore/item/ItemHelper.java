@@ -222,9 +222,9 @@ public class ItemHelper
     }
 
     public static HitResult rayTrace(Level worldIn, Player player, ClipContext.Fluid fluidMode) {
-        float f = player.getYRot();
-        float f1 = player.getXRot();
-        Vec3 vec3d = player.getEyePosition(1.0F);
+        float f = player.getXRot();
+        float f1 = player.getYRot();
+        Vec3 vec3d = player.getEyePosition();
         float f2 = Mth.cos(-f1 * ((float)Math.PI / 180F) - (float)Math.PI);
         float f3 = Mth.sin(-f1 * ((float)Math.PI / 180F) - (float)Math.PI);
         float f4 = -Mth.cos(-f * ((float)Math.PI / 180F));
@@ -251,7 +251,7 @@ public class ItemHelper
 
     public static boolean equalsIgnoreStackSize(ItemStack stack1, ItemStack stack2) {
         if(stack1 != null && stack2 != null) {
-            if(Item.getId(stack1.getItem()) - Item.getId(stack2.getItem()) == 0) {
+            if(Item.getId(stack1.getItem().asItem()) - Item.getId(stack2.getItem()) == 0) {
                 if(stack1.getItem() == stack2.getItem()) {
                     if(stack1.getDamageValue() == stack2.getDamageValue()) {
                         if(stack1.hasTag() && stack2.hasTag()) {
