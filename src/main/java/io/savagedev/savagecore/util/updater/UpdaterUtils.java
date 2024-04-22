@@ -2,7 +2,7 @@ package io.savagedev.savagecore.util.updater;
 
 /*
  * UpdaterUtils.java
- * Copyright (C) 2020 Savage - github.com/devsavage
+ * Copyright (C) 2024 Savage - github.com/devsavage
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,6 @@ import io.savagedev.savagecore.util.logger.LogHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 
 import java.io.IOException;
@@ -54,7 +53,7 @@ public class UpdaterUtils
             String downloadText = CoreReference.Strings.DOWNLOAD;
             String update_url = updater.getDownloadUrl();
 
-            event.getPlayer().sendMessage(Component.Serializer.fromJson("[{\"text\":\"" + outdatedText + "\"}," + "{\"text\":\" " + ChatFormatting.WHITE + "[" + ChatFormatting.GREEN + downloadText + ChatFormatting.WHITE + "]\"," + "\"color\":\"green\",\"hoverEvent\":{\"action\":\"show_text\",\"value\":" + "{\"text\":\"Click to download the latest version\",\"color\":\"yellow\"}}," + "\"clickEvent\":{\"action\":\"open_url\",\"value\":\"" + update_url + "\"}}]"), Util.NIL_UUID);
+            event.getEntity().sendSystemMessage(Component.Serializer.fromJson("[{\"text\":\"" + outdatedText + "\"}," + "{\"text\":\" " + ChatFormatting.WHITE + "[" + ChatFormatting.GREEN + downloadText + ChatFormatting.WHITE + "]\"," + "\"color\":\"green\",\"hoverEvent\":{\"action\":\"show_text\",\"value\":" + "{\"text\":\"Click to download the latest version\",\"color\":\"yellow\"}}," + "\"clickEvent\":{\"action\":\"open_url\",\"value\":\"" + update_url + "\"}}]"));
         }
     }
 

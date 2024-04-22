@@ -2,7 +2,7 @@ package io.savagedev.savagecore.util.updater;
 
 /*
  * Updater.java
- * Copyright (C) 2020 Savage - github.com/devsavage
+ * Copyright (C) 2024 Savage - github.com/devsavage
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Updater

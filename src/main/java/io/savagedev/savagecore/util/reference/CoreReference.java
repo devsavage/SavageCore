@@ -2,7 +2,7 @@ package io.savagedev.savagecore.util.reference;
 
 /*
  * CoreReference.java
- * Copyright (C) 2020 Savage - github.com/devsavage
+ * Copyright (C) 2024 Savage - github.com/devsavage
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,6 @@ package io.savagedev.savagecore.util.reference;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.forgespi.language.IModInfo;
 
 public class CoreReference
 {

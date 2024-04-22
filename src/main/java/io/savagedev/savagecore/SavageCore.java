@@ -2,7 +2,7 @@ package io.savagedev.savagecore;
 
 /*
  * SavageCore.java
- * Copyright (C) 2020 Savage - github.com/devsavage
+ * Copyright (C) 2024 Savage - github.com/devsavage
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +23,17 @@ package io.savagedev.savagecore;
  * THE SOFTWARE.
  */
 
-import com.electronwill.nightconfig.core.file.CommentedFileConfig;
-import com.electronwill.nightconfig.core.io.WritingMode;
 import io.savagedev.savagecore.init.ModConfigs;
-import io.savagedev.savagecore.util.logger.LogHelper;
 import io.savagedev.savagecore.util.reference.CoreReference;
-import io.savagedev.savagecore.util.updater.Updater;
-import io.savagedev.savagecore.util.updater.UpdaterUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.nio.file.Path;
+
+import com.electronwill.nightconfig.core.file.CommentedFileConfig;
+import com.electronwill.nightconfig.core.io.WritingMode;
 
 @Mod(CoreReference.MOD_ID)
 public class SavageCore

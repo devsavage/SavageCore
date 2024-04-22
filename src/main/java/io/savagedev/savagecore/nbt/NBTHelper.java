@@ -2,7 +2,7 @@ package io.savagedev.savagecore.nbt;
 
 /*
  * NBTHelper.java
- * Copyright (C) 2020 Savage - github.com/devsavage
+ * Copyright (C) 2024 Savage - github.com/devsavage
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@ package io.savagedev.savagecore.nbt;
  */
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.NbtComponent;
 import net.minecraft.world.item.ItemStack;
 
 public class NBTHelper
