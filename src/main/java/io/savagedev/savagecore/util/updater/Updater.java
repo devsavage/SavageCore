@@ -39,13 +39,11 @@ import java.net.URL;
 public class Updater
 {
     public UpdateStatus STATUS = UpdateStatus.NONE;
-
     protected String baseUrl = CoreReference.Updater.UPDATE_URL;
     protected String currentVersion;
     protected String minecraftVersion;
     protected String modId;
     protected boolean recommended = false;
-
     protected String downloadUrl;
 
     public Updater setCurrentVersion(String currentVersion) {
@@ -163,10 +161,8 @@ public class Updater
             return null;
         }
 
-        JsonParser parser = new JsonParser();
-
         try {
-            Object obj = parser.parse(versionsJson);
+            Object obj = JsonParser.parseString(versionsJson);
             JsonObject jsonObject = (JsonObject) obj;
 
             JsonObject versions = jsonObject.getAsJsonObject("versions");
@@ -178,7 +174,7 @@ public class Updater
 
             return currentVersion.get(CoreReference.Strings.RECOMMENDED.toLowerCase()).getAsString();
         } catch (NullPointerException e) {
-            e.printStackTrace();
+            LogHelper.error(e.getMessage());
         }
 
         return null;
@@ -189,9 +185,7 @@ public class Updater
             return null;
         }
 
-        JsonParser parser = new JsonParser();
-
-        Object obj = parser.parse(versionsJson);
+        Object obj = JsonParser.parseString(versionsJson);
         JsonObject jsonObject = (JsonObject) obj;
 
         JsonObject versions = jsonObject.getAsJsonObject("versions");
@@ -286,9 +280,7 @@ public class Updater
             return null;
         }
 
-        JsonParser parser = new JsonParser();
-
-        Object obj = parser.parse(versionsData);
+        Object obj = JsonParser.parseString(versionsData);
         JsonObject jsonObject = (JsonObject) obj;
 
         JsonObject versions = jsonObject.getAsJsonObject("versions");
